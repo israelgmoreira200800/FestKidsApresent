@@ -18,6 +18,8 @@ O DDL inicial do MySQL está em `backend/database/create_database.sql`.
 
 O script cria o banco `festkids` e as tabelas `clientes`, `fornecedores`, `servicos`, `festas` e `planejamento_itens`. Ele foi executado e verificado em MySQL Community Server 8.4.9. A configuração segura do usuário da aplicação será adicionada em uma etapa própria.
 
+Os dados fictícios usados na demonstração estão em `backend/database/seed_demo.sql`. O arquivo pode ser executado novamente sem duplicar os registros identificados.
+
 ## Arquitetura planejada
 
 ```text
