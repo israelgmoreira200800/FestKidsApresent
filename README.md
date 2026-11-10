@@ -188,3 +188,9 @@ Cada serviço exige um `fornecedor_id` existente, preço decimal com até duas c
 
 Cada festa exige um `cliente_id` existente, data no formato `AAAA-MM-DD`, quantidade de convidados maior que zero e orçamento decimal maior que zero. Toda festa começa em `RASCUNHO`; o CRUD comum não pode mudar o status para `CONFIRMADA`.
 
+## Item de planejamento
+
+`backend/models/planejamento_item.py` mapeia a tabela `planejamento_itens`. Cada item liga uma Festa a um Serviço e copia o preço-base para `preco_referencia` no momento da seleção.
+
+Essa cópia preserva o histórico: alterar depois o preço-base do Serviço não modifica o valor que já foi usado no planejamento. A combinação de `festa_id` e `servico_id` é única, impedindo que o mesmo Serviço apareça duas vezes na mesma Festa.
+
