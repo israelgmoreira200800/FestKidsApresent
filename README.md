@@ -13,6 +13,7 @@ As decisões e tarefas da reconstrução estão registradas em:
 - `openspec/changes/reconstruir-festkids-do-zero/tasks.md`
 
 Os requisitos do produto estão explicados em `docs/requisitos.md`.
+As entidades e seus relacionamentos estão explicados em `docs/modelo-dominio.md`.
 
 ## Arquitetura planejada
 
