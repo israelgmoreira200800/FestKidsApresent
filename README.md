@@ -142,3 +142,15 @@ Depois, acesse `http://127.0.0.1:5500`. A tela em `frontend/index.html` envia o 
 
 A exclusão retorna conflito `409` quando o cliente possui uma festa vinculada.
 
+## Endpoints de fornecedores
+
+| Método | Endpoint | Operação |
+|---|---|---|
+| `POST` | `/api/fornecedores` | Cadastrar fornecedor |
+| `GET` | `/api/fornecedores` | Listar fornecedores |
+| `GET` | `/api/fornecedores/{id}` | Consultar fornecedor |
+| `PUT` | `/api/fornecedores/{id}` | Atualizar fornecedor |
+| `DELETE` | `/api/fornecedores/{id}` | Excluir fornecedor |
+
+O campo booleano `disponivel` controla se o fornecedor aceita novas seleções em geral. A exclusão retorna conflito `409` quando há serviço vinculado.
+
