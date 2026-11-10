@@ -154,3 +154,15 @@ A exclusão retorna conflito `409` quando o cliente possui uma festa vinculada.
 
 O campo booleano `disponivel` controla se o fornecedor aceita novas seleções em geral. A exclusão retorna conflito `409` quando há serviço vinculado.
 
+## Endpoints de serviços
+
+| Método | Endpoint | Operação |
+|---|---|---|
+| `POST` | `/api/servicos` | Cadastrar serviço |
+| `GET` | `/api/servicos` | Listar serviços |
+| `GET` | `/api/servicos/{id}` | Consultar serviço |
+| `PUT` | `/api/servicos/{id}` | Atualizar serviço |
+| `DELETE` | `/api/servicos/{id}` | Excluir serviço |
+
+Cada serviço exige um `fornecedor_id` existente, preço decimal com até duas casas e capacidade maior que zero. As categorias aceitas são `BUFFET`, `DECORACAO`, `FOTOGRAFIA`, `RECREACAO`, `BOLO_E_DOCES` e `ESPACO`.
+
