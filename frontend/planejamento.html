@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FestKids | Planejamento</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header class="cabecalho">
+        <a class="marca" href="index.html">
+            <span class="marca-icone" aria-hidden="true">F</span>
+            <span>FestKids</span>
+        </a>
+        <nav class="navegacao" aria-label="Navegação principal">
+            <a href="index.html">Clientes</a>
+            <a href="fornecedores.html">Fornecedores</a>
+            <a href="servicos.html">Serviços</a>
+            <a href="festas.html">Festas</a>
+            <a class="ativo" href="planejamento.html" aria-current="page">Planejamento</a>
+        </nav>
+    </header>
+
+    <main class="pagina-planejamento">
+        <section class="titulo-planejamento">
+            <div>
+                <p class="etiqueta">Jornada da festa</p>
+                <h1>Planejamento em cinco etapas</h1>
+                <p>Escolha uma etapa para acompanhar o pacote até a confirmação.</p>
+            </div>
+            <span class="selo">Route → Controller → Service → Repository</span>
+        </section>
+
+        <nav class="navegacao-etapas" aria-label="Etapas do planejamento">
+            <ol>
+                <li>
+                    <a href="#festa" data-etapa="festa" aria-controls="painel-festa" aria-current="step">
+                        <span class="numero-etapa">1</span>
+                        <span><strong>Festa</strong><small>Escolher evento</small></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#sugestao" data-etapa="sugestao" aria-controls="painel-sugestao">
+                        <span class="numero-etapa">2</span>
+                        <span><strong>Sugestão</strong><small>Montar pacote</small></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#orcamento" data-etapa="orcamento" aria-controls="painel-orcamento">
+                        <span class="numero-etapa">3</span>
+                        <span><strong>Orçamento</strong><small>Analisar valores</small></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#agenda" data-etapa="agenda" aria-controls="painel-agenda">
+                        <span class="numero-etapa">4</span>
+                        <span><strong>Agenda</strong><small>Ver disponibilidade</small></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#confirmacao" data-etapa="confirmacao" aria-controls="painel-confirmacao">
+                        <span class="numero-etapa">5</span>
+                        <span><strong>Confirmação</strong><small>Reservar planejamento</small></span>
+                    </a>
+                </li>
+            </ol>
+        </nav>
+
+        <p id="estado-etapa" class="estado-etapa" role="status" aria-live="polite">Etapa 1 de 5: Festa</p>
+
+        <div class="paineis-planejamento">
+            <section id="painel-festa" class="painel-etapa" data-painel="festa" aria-labelledby="titulo-etapa-festa" tabindex="-1">
+                <p class="etiqueta">Etapa 1</p>
+                <h2 id="titulo-etapa-festa">Escolher a festa</h2>
+                <p>O ponto de partida será selecionar uma festa em rascunho para iniciar o planejamento.</p>
+                <a class="link-acao" href="festas.html">Gerenciar festas</a>
+            </section>
+
+            <section id="painel-sugestao" class="painel-etapa" data-painel="sugestao" aria-labelledby="titulo-etapa-sugestao" tabindex="-1" hidden>
+                <p class="etiqueta">Etapa 2</p>
+                <h2 id="titulo-etapa-sugestao">Sugerir o pacote</h2>
+                <p>As categorias desejadas serão enviadas para a API escolher serviços disponíveis de forma determinística.</p>
+            </section>
+
+            <section id="painel-orcamento" class="painel-etapa" data-painel="orcamento" aria-labelledby="titulo-etapa-orcamento" tabindex="-1" hidden>
+                <p class="etiqueta">Etapa 3</p>
+                <h2 id="titulo-etapa-orcamento">Analisar o orçamento</h2>
+                <p>O total, o saldo, o percentual utilizado e o custo por convidado serão apresentados nesta etapa.</p>
+            </section>
+
+            <section id="painel-agenda" class="painel-etapa" data-painel="agenda" aria-labelledby="titulo-etapa-agenda" tabindex="-1" hidden>
+                <p class="etiqueta">Etapa 4</p>
+                <h2 id="titulo-etapa-agenda">Verificar a agenda</h2>
+                <p>O sistema verificará se os fornecedores continuam livres durante todo o dia da festa.</p>
+            </section>
+
+            <section id="painel-confirmacao" class="painel-etapa" data-painel="confirmacao" aria-labelledby="titulo-etapa-confirmacao" tabindex="-1" hidden>
+                <p class="etiqueta">Etapa 5</p>
+                <h2 id="titulo-etapa-confirmacao">Confirmar o planejamento</h2>
+                <p>A confirmação será apresentada como reserva acadêmica, sem pagamento ou contrato comercial.</p>
+            </section>
+        </div>
+    </main>
+
+    <script src="js/planejamento.js"></script>
+</body>
+</html>

@@ -418,6 +418,156 @@ button.botao-secundario {
     gap: 12px;
 }
 
+.pagina-planejamento {
+    width: min(1180px, calc(100% - 40px));
+    margin: 0 auto;
+    padding: 36px 0 80px;
+}
+
+.titulo-planejamento {
+    display: flex;
+    gap: 24px;
+    align-items: end;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.titulo-planejamento h1 {
+    max-width: 720px;
+    margin: 6px 0 10px;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    line-height: 1.05;
+    letter-spacing: -0.045em;
+}
+
+.titulo-planejamento p:last-child {
+    margin: 0;
+    color: var(--cor-texto-suave);
+}
+
+.navegacao-etapas {
+    overflow-x: auto;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.78);
+    border: 1px solid var(--cor-borda);
+    border-radius: 20px;
+    box-shadow: 0 12px 34px rgba(67, 42, 112, 0.08);
+}
+
+.navegacao-etapas ol {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(150px, 1fr));
+    gap: 8px;
+    min-width: 800px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.navegacao-etapas a {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    min-height: 70px;
+    padding: 12px;
+    color: var(--cor-texto-suave);
+    border: 2px solid transparent;
+    border-radius: 14px;
+    text-decoration: none;
+}
+
+.navegacao-etapas a:hover {
+    color: var(--cor-primaria);
+    background: #f7f3ff;
+}
+
+.navegacao-etapas a[aria-current="step"] {
+    color: var(--cor-primaria-escura);
+    background: #eee7ff;
+    border-color: #c9b8f2;
+}
+
+.navegacao-etapas a:focus-visible,
+.link-acao:focus-visible,
+.navegacao a:focus-visible {
+    outline: 3px solid var(--cor-destaque);
+    outline-offset: 3px;
+}
+
+.numero-etapa {
+    display: grid;
+    flex: 0 0 34px;
+    width: 34px;
+    height: 34px;
+    place-items: center;
+    color: var(--cor-primaria);
+    background: white;
+    border: 1px solid var(--cor-borda);
+    border-radius: 50%;
+    font-weight: 700;
+}
+
+.navegacao-etapas strong,
+.navegacao-etapas small {
+    display: block;
+}
+
+.navegacao-etapas small {
+    margin-top: 3px;
+    font-size: 0.74rem;
+}
+
+.estado-etapa {
+    margin: 22px 0 10px;
+    color: var(--cor-primaria);
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.paineis-planejamento {
+    min-height: 290px;
+}
+
+.painel-etapa {
+    padding: 38px;
+    background: var(--cor-superficie);
+    border: 1px solid rgba(109, 59, 209, 0.1);
+    border-radius: 24px;
+    box-shadow: var(--sombra);
+}
+
+.painel-etapa[hidden] {
+    display: none;
+}
+
+.painel-etapa:focus {
+    outline: 3px solid rgba(109, 59, 209, 0.25);
+    outline-offset: 4px;
+}
+
+.painel-etapa h2 {
+    margin: 8px 0 12px;
+    font-size: clamp(1.7rem, 4vw, 2.5rem);
+}
+
+.painel-etapa > p:not(.etiqueta) {
+    max-width: 720px;
+    margin: 0;
+    color: var(--cor-texto-suave);
+    line-height: 1.7;
+}
+
+.link-acao {
+    display: inline-flex;
+    margin-top: 24px;
+    padding: 12px 17px;
+    color: white;
+    background: var(--cor-primaria);
+    border-radius: 11px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
 @media (max-width: 820px) {
     .conteudo-principal {
         grid-template-columns: 1fr;
@@ -447,6 +597,11 @@ button.botao-secundario {
         align-items: flex-start;
         flex-direction: column;
     }
+
+    .titulo-planejamento {
+        align-items: flex-start;
+        flex-direction: column;
+    }
 }
 
 @media (max-width: 520px) {
@@ -471,6 +626,16 @@ button.botao-secundario {
     .pagina-gestao {
         width: min(100% - 28px, 1180px);
         padding-top: 20px;
+    }
+
+    .pagina-planejamento {
+        width: min(100% - 28px, 1180px);
+        padding-top: 20px;
+    }
+
+    .painel-etapa {
+        padding: 26px 20px;
+        border-radius: 18px;
     }
 
     .linha-campos {

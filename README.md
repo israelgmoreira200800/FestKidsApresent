@@ -235,3 +235,9 @@ Na mesma transação, o Service verifica se a Festa continua em `RASCUNHO`, se o
 
 A resposta identifica o resultado como `RESERVA_ACADEMICA` e informa que a confirmação não representa pagamento ou contrato comercial.
 
+## Jornada visual do planejamento
+
+`frontend/planejamento.html` apresenta as cinco etapas da jornada: Festa, Sugestão, Orçamento, Agenda e Confirmação. O link “Planejamento” também está disponível no menu das quatro telas de cadastro.
+
+Cada etapa usa um link acessível por teclado, possui um painel identificado e atualiza `aria-current="step"` para indicar a posição atual. `frontend/js/planejamento.js` alterna os painéis e mantém a etapa no endereço por meio do fragmento `#`. Em tela estreita, a faixa das etapas possui rolagem própria para preservar a largura da página.
+
