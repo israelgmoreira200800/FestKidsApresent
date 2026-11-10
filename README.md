@@ -194,3 +194,9 @@ Cada festa exige um `cliente_id` existente, data no formato `AAAA-MM-DD`, quanti
 
 Essa cópia preserva o histórico: alterar depois o preço-base do Serviço não modifica o valor que já foi usado no planejamento. A combinação de `festa_id` e `servico_id` é única, impedindo que o mesmo Serviço apareça duas vezes na mesma Festa.
 
+## Repository de planejamento
+
+`backend/repositories/planejamento_repository.py` concentra consultas especializadas que combinam itens, serviços e fornecedores. Seus primeiros helpers buscam serviços elegíveis e listam os itens atuais de uma Festa.
+
+As entradas são enviadas ao SQL como parâmetros nomeados, separados do texto da consulta. O Repository usa `db.session.execute` e não executa `commit`; por isso, participa da mesma transação controlada pelo Service e permite desfazer toda a operação com `rollback`.
+

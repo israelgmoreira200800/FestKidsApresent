@@ -37,7 +37,7 @@
 ## 6. Agregado de planejamento
 
 - [x] 6.1 Implementar Model Item de Planejamento com preço preservado e vínculos, verificando restrições e serialização
-- [ ] 6.2 Criar PlanejamentoRepository com helpers de consulta parametrizados na mesma transação da aplicação, verificando que não há concatenação de entrada em SQL
+- [x] 6.2 Criar PlanejamentoRepository com helpers de consulta parametrizados na mesma transação da aplicação, verificando que não há concatenação de entrada em SQL
 - [ ] 6.3 Implementar sugestão determinística por categoria, verificando disponibilidade, menor preço, desempate por ID e categoria sem candidato
 - [ ] 6.4 Implementar análise de orçamento, verificando total, saldo, percentual, custo por convidado e casos dentro/acima do limite
 - [ ] 6.5 Implementar verificação de agenda por fornecedor e dia inteiro, verificando cenários livre e conflitante
