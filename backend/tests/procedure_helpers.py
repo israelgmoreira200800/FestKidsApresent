@@ -116,4 +116,121 @@ def instalar_procedures_planejamento():
             """
         )
     )
+    db.session.execute(
+        db.text("drop procedure if exists sp_fornecedores_planejamento")
+    )
+    db.session.execute(
+        db.text(
+            """
+            create procedure sp_fornecedores_planejamento(
+                in p_festa_id int
+            )
+            begin
+                select distinct s.fornecedor_id
+                from planejamento_itens pi
+                inner join servicos s on s.id = pi.servico_id
+                where pi.festa_id = p_festa_id
+                order by s.fornecedor_id;
+            end
+            """
+        )
+    )
+    db.session.execute(
+        db.text("drop procedure if exists sp_bloquear_fornecedor")
+    )
+    db.session.execute(
+        db.text(
+            """
+            create procedure sp_bloquear_fornecedor(
+                in p_fornecedor_id int
+            )
+            begin
+                select id
+                from fornecedores
+                where id = p_fornecedor_id
+                for update;
+            end
+            """
+        )
+    )
+    db.session.execute(db.text("drop procedure if exists sp_bloquear_festa"))
+    db.session.execute(
+        db.text(
+            """
+            create procedure sp_bloquear_festa(
+                in p_festa_id int
+            )
+            begin
+                select id, status, data, orcamento, quantidade_convidados
+                from festas
+                where id = p_festa_id
+                for update;
+            end
+            """
+        )
+    )
+    db.session.execute(
+        db.text("drop procedure if exists sp_bloquear_itens_planejamento")
+    )
+    db.session.execute(
+        db.text(
+            """
+            create procedure sp_bloquear_itens_planejamento(
+                in p_festa_id int
+            )
+            begin
+                select
+                    pi.id as item_id,
+                    pi.preco_referencia,
+                    s.id as servico_id,
+                    s.fornecedor_id,
+                    s.capacidade_convidados,
+                    s.disponivel as servico_disponivel,
+                    f.disponivel as fornecedor_disponivel
+                from planejamento_itens pi
+                inner join servicos s on s.id = pi.servico_id
+                inner join fornecedores f on f.id = s.fornecedor_id
+                where pi.festa_id = p_festa_id
+                order by pi.id
+                for update;
+            end
+            """
+        )
+    )
+    db.session.execute(
+        db.text("drop procedure if exists sp_conflitos_agenda_confirmacao")
+    )
+    db.session.execute(
+        db.text(
+            """
+            create procedure sp_conflitos_agenda_confirmacao(
+                in p_festa_id int
+            )
+            begin
+                select
+                    fornecedor.id as fornecedor_id,
+                    festa_confirmada.id as festa_conflitante_id
+                from festas festa_alvo
+                inner join planejamento_itens item_alvo
+                    on item_alvo.festa_id = festa_alvo.id
+                inner join servicos servico_alvo
+                    on servico_alvo.id = item_alvo.servico_id
+                inner join fornecedores fornecedor
+                    on fornecedor.id = servico_alvo.fornecedor_id
+                inner join servicos servico_confirmado
+                    on servico_confirmado.fornecedor_id = fornecedor.id
+                inner join planejamento_itens item_confirmado
+                    on item_confirmado.servico_id = servico_confirmado.id
+                inner join festas festa_confirmada
+                    on festa_confirmada.id = item_confirmado.festa_id
+                where festa_alvo.id = p_festa_id
+                  and festa_confirmada.id <> festa_alvo.id
+                  and festa_confirmada.data = festa_alvo.data
+                  and festa_confirmada.status = 'CONFIRMADA'
+                order by fornecedor.id, festa_confirmada.id
+                for update;
+            end
+            """
+        )
+    )
     db.session.commit()

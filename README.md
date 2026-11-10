@@ -227,3 +227,11 @@ A resposta usa `viavel: true` e `DENTRO_DO_ORCAMENTO` quando o total não ultrap
 
 A resposta usa `disponivel: true` quando não há conflito. Quando existe conflito, usa `disponivel: false` e identifica fornecedor, Festa e data conflitante. Festas em `RASCUNHO` e festas em outras datas não reservam o fornecedor. Uma Festa sem pacote não pode apresentar uma falsa confirmação de agenda livre.
 
+## Confirmação transacional
+
+`POST /api/planejamentos/{festa_id}/confirmacao` revalida o planejamento antes de mudar a Festa para `CONFIRMADA`. A operação bloqueia fornecedores em ordem crescente de ID e depois bloqueia Festa e itens, reduzindo disputas e evitando dupla reserva do mesmo fornecedor no mesmo dia.
+
+Na mesma transação, o Service verifica se a Festa continua em `RASCUNHO`, se o pacote não mudou, se serviços e fornecedores continuam disponíveis, se a capacidade atende aos convidados, se o orçamento é suficiente e se a agenda permanece livre. Somente depois executa `commit`; qualquer falha executa `rollback`.
+
+A resposta identifica o resultado como `RESERVA_ACADEMICA` e informa que a confirmação não representa pagamento ou contrato comercial.
+
