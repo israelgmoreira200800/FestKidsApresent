@@ -36,7 +36,7 @@ Alternativa considerada: concentrar todas as regras em Models Active Record redu
 
 ### Repository somente para operações especializadas
 
-CRUD simples usará ORM nas Models. Sugestões, agregações de orçamento, conflitos de agenda e confirmação coordenada usarão um Repository de planejamento, com SQL parametrizado quando a consulta ganhar clareza ou desempenho.
+CRUD simples usará ORM nas Models. Sugestões, agregações de orçamento, conflitos de agenda e confirmação coordenada usarão um Repository de planejamento. As consultas poderão usar SQL, views ou procedures compatíveis com os exemplos estudados, sempre com parâmetros em vez de concatenar entradas do usuário.
 
 Alternativa considerada: um Repository para cada entidade duplicaria operações do ORM e criaria cerimônia sem regra adicional.
 
@@ -45,6 +45,12 @@ Alternativa considerada: um Repository para cada entidade duplicaria operações
 O ambiente de demonstração e os testes de integração usarão MySQL em schemas separados. Não haverá fallback silencioso para outro banco, evitando diferenças de dialeto, bloqueio e tipos monetários.
 
 Alternativa considerada: SQLite simplificaria o início, mas não reproduziria o banco e a concorrência exigidos na apresentação.
+
+### SQL limitado ao conteúdo estudado
+
+O DDL usará comandos básicos de criação de banco, tabelas, chaves primárias, chaves estrangeiras, valores únicos, tipos já vistos e `ENGINE = InnoDB`. Validações de categoria, status, textos e números positivos ficarão nos Services. Views e procedures só serão adicionadas quando resolverem uma consulta real do Repository e puderem ser explicadas com base nos exercícios fornecidos.
+
+Alternativa considerada: constraints nomeadas, checks, collations e índices avançados aumentariam a robustez do banco, mas introduziriam conceitos que a equipe não estudou e não conseguiria defender com segurança.
 
 ### Frontend sem framework na primeira versão
 

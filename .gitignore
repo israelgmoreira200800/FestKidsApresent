@@ -17,6 +17,7 @@ node_modules/
 coverage/
 
 # Bancos e dados locais
+.mysql-local/
 *.db
 *.sqlite
 *.sqlite3
