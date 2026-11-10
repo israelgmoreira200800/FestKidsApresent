@@ -4,7 +4,7 @@ Plataforma acadêmica para planejamento de festas infantis, reconstruída do zer
 
 ## Estado atual
 
-O projeto já possui a base executável da API Flask, tratamento de erros, proteções das requisições e o primeiro Model ORM: `Cliente`.
+O projeto já possui a base executável da API Flask, tratamento de erros, proteções das requisições, os quatro cadastros com ORM e suas telas de gestão.
 
 As decisões e tarefas da reconstrução estão registradas em:
 
@@ -128,7 +128,16 @@ Com a API em execução, abra outro terminal e inicie o servidor estático:
 .\.venv\Scripts\python.exe -m http.server 5500 --directory frontend
 ```
 
-Depois, acesse `http://127.0.0.1:5500`. A tela em `frontend/index.html` envia o formulário para a API por meio de `frontend/js/clientes.js`, enquanto `frontend/css/styles.css` contém todo o visual responsivo.
+Depois, acesse `http://127.0.0.1:5500`. A navegação leva às quatro telas:
+
+- `frontend/index.html`: clientes;
+- `frontend/fornecedores.html`: fornecedores;
+- `frontend/servicos.html`: serviços;
+- `frontend/festas.html`: festas.
+
+Cada página carrega `frontend/js/api.js`, que concentra a requisição HTTP e a criação segura dos cartões, e seu próprio arquivo JavaScript dentro de `frontend/js/`. O arquivo `frontend/css/styles.css` contém o visual compartilhado e as adaptações para telas menores.
+
+Nas quatro telas, o usuário pode listar, cadastrar, editar e excluir registros. A interface informa quando está carregando, quando a lista está vazia, quando uma operação termina com sucesso e quando a API devolve um erro ou não está disponível.
 
 ## Endpoints de clientes
 

@@ -1,96 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Cadastro de clientes do FestKids">
-    <title>FestKids | Cadastro de cliente</title>
-    <link rel="stylesheet" href="css/styles.css">
-</head>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>FestKids | Clientes</title><link rel="stylesheet" href="css/styles.css"></head>
 <body>
-    <header class="cabecalho">
-        <a class="marca" href="index.html" aria-label="Página inicial do FestKids">
-            <span class="marca-icone" aria-hidden="true">F</span>
-            <span>FestKids</span>
-        </a>
-        <span class="identificacao-pagina">Cadastro de cliente</span>
-    </header>
-
-    <main class="conteudo-principal">
-        <section class="apresentacao" aria-labelledby="titulo-pagina">
-            <p class="etiqueta">Primeira etapa</p>
-            <h1 id="titulo-pagina">Vamos conhecer o responsável pela festa.</h1>
-            <p class="texto-apresentacao">
-                Cadastre os dados de contato do cliente. Depois, ele poderá ser
-                relacionado a uma ou mais festas infantis.
-            </p>
-
-            <ol class="fluxo" aria-label="Fluxo do cadastro">
-                <li><strong>1</strong> Preencher os dados</li>
-                <li><strong>2</strong> Enviar para a API</li>
-                <li><strong>3</strong> Salvar no MySQL</li>
-            </ol>
-        </section>
-
-        <section class="cartao-formulario" aria-labelledby="titulo-formulario">
-            <div class="cabecalho-formulario">
-                <p class="etiqueta">Novo cliente</p>
-                <h2 id="titulo-formulario">Dados do responsável</h2>
-                <p>Todos os campos são obrigatórios.</p>
-            </div>
-
-            <form id="formulario-cliente">
-                <div class="campo">
-                    <label for="nome">Nome completo</label>
-                    <input
-                        id="nome"
-                        name="nome"
-                        type="text"
-                        maxlength="120"
-                        autocomplete="name"
-                        placeholder="Ex.: Ana Souza"
-                        required
-                    >
-                </div>
-
-                <div class="campo">
-                    <label for="email">E-mail</label>
-                    <input
-                        id="email"
-                        name="email"
-                        type="email"
-                        maxlength="255"
-                        autocomplete="email"
-                        placeholder="ana@exemplo.com"
-                        required
-                    >
-                </div>
-
-                <div class="campo">
-                    <label for="telefone">Telefone</label>
-                    <input
-                        id="telefone"
-                        name="telefone"
-                        type="tel"
-                        maxlength="20"
-                        autocomplete="tel"
-                        placeholder="(31) 90000-0000"
-                        required
-                    >
-                </div>
-
-                <div
-                    id="mensagem-formulario"
-                    class="mensagem"
-                    role="status"
-                    aria-live="polite"
-                ></div>
-
-                <button id="botao-salvar" type="submit">Salvar cliente</button>
-            </form>
-        </section>
+    <header class="cabecalho"><a class="marca" href="index.html"><span class="marca-icone">F</span><span>FestKids</span></a><nav class="navegacao" aria-label="Cadastros principais"><a class="ativo" href="index.html">Clientes</a><a href="fornecedores.html">Fornecedores</a><a href="servicos.html">Serviços</a><a href="festas.html">Festas</a></nav></header>
+    <main class="pagina-gestao">
+        <section class="titulo-gestao"><div><p class="etiqueta">Cadastros</p><h1>Clientes</h1><p>Responsáveis pelas festas cadastradas no sistema.</p></div><span class="selo">Route → Controller → Service → Model</span></section>
+        <div class="grade-gestao">
+            <section class="cartao-formulario"><div class="cabecalho-formulario"><p class="etiqueta">Formulário</p><h2 id="titulo-formulario">Novo cliente</h2></div>
+                <form id="formulario-cliente"><input id="cliente-id" type="hidden"><div class="campo"><label for="nome">Nome completo</label><input id="nome" maxlength="120" required></div><div class="campo"><label for="email">E-mail</label><input id="email" type="email" maxlength="255" required></div><div class="campo"><label for="telefone">Telefone</label><input id="telefone" type="tel" maxlength="20" required></div><div id="mensagem-formulario" class="mensagem" role="status" aria-live="polite"></div><div class="acoes-formulario"><button id="botao-salvar" type="submit">Salvar cliente</button><button id="botao-cancelar" class="botao-secundario" type="button" hidden>Cancelar edição</button></div></form>
+            </section>
+            <section class="cartao-lista"><div class="cabecalho-lista"><div><p class="etiqueta">Registros</p><h2>Clientes cadastrados</h2></div><button id="botao-atualizar" class="botao-pequeno" type="button">Atualizar</button></div><div id="estado-lista" class="estado-lista" role="status">Carregando clientes...</div><div id="lista-clientes" class="lista-registros"></div></section>
+        </div>
     </main>
-
-    <script src="js/clientes.js"></script>
+    <script src="js/api.js"></script><script src="js/clientes.js"></script>
 </body>
 </html>
