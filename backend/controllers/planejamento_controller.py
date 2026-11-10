@@ -1,6 +1,10 @@
 from flask import request
 
-from backend.services.planejamento_service import analisar_orcamento, sugerir_pacote
+from backend.services.planejamento_service import (
+    analisar_orcamento,
+    sugerir_pacote,
+    verificar_agenda,
+)
 
 
 def criar_sugestao():
@@ -11,4 +15,9 @@ def criar_sugestao():
 
 def consultar_orcamento(festa_id):
     resultado = analisar_orcamento(festa_id)
+    return resultado, 200
+
+
+def consultar_agenda(festa_id):
+    resultado = verificar_agenda(festa_id)
     return resultado, 200

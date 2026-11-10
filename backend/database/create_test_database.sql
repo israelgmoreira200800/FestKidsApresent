@@ -73,3 +73,37 @@ begin
     group by f.id, f.orcamento, f.quantidade_convidados;
 end //
 delimiter ;
+
+drop procedure if exists sp_conflitos_agenda;
+
+delimiter //
+create procedure sp_conflitos_agenda(
+    in p_festa_id int
+)
+begin
+    select distinct
+        fornecedor.id as fornecedor_id,
+        fornecedor.nome_comercial as fornecedor_nome,
+        festa_confirmada.id as festa_conflitante_id,
+        festa_confirmada.nome as festa_conflitante_nome,
+        festa_confirmada.data
+    from festas festa_alvo
+    inner join planejamento_itens item_alvo
+        on item_alvo.festa_id = festa_alvo.id
+    inner join servicos servico_alvo
+        on servico_alvo.id = item_alvo.servico_id
+    inner join fornecedores fornecedor
+        on fornecedor.id = servico_alvo.fornecedor_id
+    inner join servicos servico_confirmado
+        on servico_confirmado.fornecedor_id = fornecedor.id
+    inner join planejamento_itens item_confirmado
+        on item_confirmado.servico_id = servico_confirmado.id
+    inner join festas festa_confirmada
+        on festa_confirmada.id = item_confirmado.festa_id
+    where festa_alvo.id = p_festa_id
+      and festa_confirmada.id <> festa_alvo.id
+      and festa_confirmada.data = festa_alvo.data
+      and festa_confirmada.status = 'CONFIRMADA'
+    order by fornecedor.id, festa_confirmada.id;
+end //
+delimiter ;

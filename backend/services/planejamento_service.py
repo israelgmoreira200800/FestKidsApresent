@@ -148,3 +148,37 @@ def analisar_orcamento(festa_id):
             "DENTRO_DO_ORCAMENTO" if viavel else "ACIMA_DO_ORCAMENTO"
         ),
     }
+
+
+def verificar_agenda(festa_id):
+    festa = Festa.query.filter_by(id=festa_id).first()
+
+    if not festa:
+        raise RecursoNaoEncontrado("Festa nao encontrada.")
+
+    possui_itens = PlanejamentoItem.query.filter_by(festa_id=festa_id).first()
+    if not possui_itens:
+        raise ErroValidacao(
+            "A festa precisa possuir um pacote para verificar a agenda."
+        )
+
+    conflitos_consultados = PlanejamentoRepository.buscar_conflitos_agenda(
+        festa_id
+    )
+    conflitos = [
+        {
+            "fornecedor_id": conflito["fornecedor_id"],
+            "fornecedor_nome": conflito["fornecedor_nome"],
+            "festa_conflitante_id": conflito["festa_conflitante_id"],
+            "festa_conflitante_nome": conflito["festa_conflitante_nome"],
+            "data": conflito["data"].isoformat(),
+        }
+        for conflito in conflitos_consultados
+    ]
+
+    return {
+        "festa_id": festa.id,
+        "data": festa.data.isoformat(),
+        "disponivel": len(conflitos) == 0,
+        "conflitos": conflitos,
+    }

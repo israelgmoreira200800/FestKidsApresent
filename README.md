@@ -221,3 +221,9 @@ Se alguma categoria não possuir candidato, a resposta usa `completo: false`, in
 
 A resposta usa `viavel: true` e `DENTRO_DO_ORCAMENTO` quando o total não ultrapassa o limite. Quando ultrapassa, usa `viavel: false`, `ACIMA_DO_ORCAMENTO` e apresenta o excedente, sem sugerir que o pacote foi aprovado.
 
+## Verificação de agenda
+
+`GET /api/planejamentos/{festa_id}/agenda` verifica os fornecedores do pacote considerando reserva pelo dia inteiro. A procedure `sp_conflitos_agenda` procura o mesmo fornecedor em outra Festa `CONFIRMADA` na mesma data.
+
+A resposta usa `disponivel: true` quando não há conflito. Quando existe conflito, usa `disponivel: false` e identifica fornecedor, Festa e data conflitante. Festas em `RASCUNHO` e festas em outras datas não reservam o fornecedor. Uma Festa sem pacote não pode apresentar uma falsa confirmação de agenda livre.
+
