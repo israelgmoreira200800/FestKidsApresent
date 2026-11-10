@@ -1,0 +1,35 @@
+# Segredos e configurações locais
+.env
+.env.*
+!.env.example
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+
+# JavaScript
+node_modules/
+coverage/
+
+# Bancos e dados locais
+*.db
+*.sqlite
+*.sqlite3
+*.sql.bak
+
+# Editores e sistema operacional
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Temporários e logs
+*.log
+tmp/
+temp/
+

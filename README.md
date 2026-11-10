@@ -1,0 +1,56 @@
+# FestKids
+
+Plataforma acadêmica para planejamento de festas infantis, reconstruída do zero para demonstrar arquitetura em camadas, regras de negócio, persistência e integração entre frontend e API.
+
+## Estado atual
+
+O projeto está na fase de fundação. Ainda não existe código executável da aplicação.
+
+As decisões e tarefas da reconstrução estão registradas em:
+
+- `openspec/changes/reconstruir-festkids-do-zero/proposal.md`
+- `openspec/changes/reconstruir-festkids-do-zero/design.md`
+- `openspec/changes/reconstruir-festkids-do-zero/tasks.md`
+
+## Arquitetura planejada
+
+```text
+Frontend HTML, CSS e JavaScript
+            ↓ HTTP/JSON
+Routes → Controllers → Services → Models/Repositories → MySQL
+```
+
+## Mapa inicial das pastas
+
+```text
+backend/
+  controllers/   recebe e devolve dados HTTP
+  database/      scripts de criação e dados de demonstração
+  models/        entidades e operações simples com ORM
+  repositories/  consultas e transações especializadas
+  routes/        URLs e métodos da API
+  services/      casos de uso e regras da aplicação
+  tests/         testes do backend e da persistência
+frontend/
+  css/           estilos da interface
+  js/            comportamento e comunicação com a API
+  tests/         testes das funções do frontend
+docs/            arquitetura, diagramas, fluxos e apresentação
+openspec/        proposta, especificações e tarefas rastreáveis
+```
+
+## Escopo acadêmico
+
+O sistema terá CRUD de clientes, fornecedores, serviços e festas, além de quatro funcionalidades de negócio:
+
+1. Sugerir pacote de serviços.
+2. Analisar orçamento.
+3. Verificar agenda dos fornecedores.
+4. Confirmar planejamento.
+
+Autenticação, pagamentos, propostas comerciais, avaliações, chat e inteligência artificial de recomendação não fazem parte desta versão.
+
+## Segurança
+
+Nunca coloque senhas, chaves ou conexões reais no Git. Copie `backend/.env.example` para um arquivo local ignorado somente quando a configuração do backend for implementada.
+
