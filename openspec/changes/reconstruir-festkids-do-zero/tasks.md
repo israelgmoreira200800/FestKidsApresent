@@ -11,7 +11,7 @@
 - [x] 2.1 Documentar entidades, atributos, relacionamentos e simplificações do domínio, verificando o diagrama de classes contra as especificações
 - [x] 2.2 Criar o DDL MySQL com comandos estudados, DECIMAL e relacionamentos por chaves estrangeiras, verificando sua execução em banco vazio
 - [x] 2.3 Criar dados fictícios mínimos e idempotentes para demonstração, verificando que não há dados pessoais reais
-- [ ] 2.4 Configurar um schema separado de testes e proteções contra uso acidental do banco de demonstração, verificando a recusa de nomes não permitidos
+- [x] 2.4 Configurar um schema separado de testes e proteções contra uso acidental do banco de demonstração, verificando a recusa de nomes não permitidos
 
 ## 3. Backend mínimo
 

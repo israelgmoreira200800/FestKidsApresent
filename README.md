@@ -20,6 +20,8 @@ O script cria o banco `festkids` e as tabelas `clientes`, `fornecedores`, `servi
 
 Os dados fictícios usados na demonstração estão em `backend/database/seed_demo.sql`. O arquivo pode ser executado novamente sem duplicar os registros identificados.
 
+Os testes automatizados usam o banco separado `festkids_test`, criado por `backend/database/create_test_database.sql`. A proteção em `backend/tests/database_guard.py` recusa a execução quando outro nome de banco é informado.
+
 ## Arquitetura planejada
 
 ```text
