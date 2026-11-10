@@ -75,3 +75,13 @@ python -m venv .venv
 
 O ambiente `.venv` é local e está ignorado pelo Git.
 
+## Executar o backend
+
+Copie `backend/.env.example` para `backend/.env.local` e preencha `DATABASE_URL` com a conexão local do MySQL. Depois, execute:
+
+```powershell
+.\.venv\Scripts\python.exe -m backend.run
+```
+
+A rota `GET http://127.0.0.1:5000/api/saude` confirma que a API está funcionando.
+
