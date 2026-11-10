@@ -108,3 +108,15 @@ Falhas internas retornam uma mensagem genérica e não expõem traceback ou deta
 
 `backend/models/cliente.py` mapeia a classe `Cliente` para a tabela `clientes` usando a sintaxe clássica `db.Column`. O método `para_dict()` prepara seus atributos para respostas JSON, mantendo a persistência simples sob responsabilidade do SQLAlchemy.
 
+## Cadastrar cliente
+
+O endpoint `POST /api/clientes` recebe JSON com `nome`, `email` e `telefone`. A requisição percorre Route, Controller, Service e Model antes de chegar ao MySQL. Um cadastro válido retorna o cliente com código HTTP `201`; dados inválidos retornam `400` e e-mail repetido retorna `409`.
+
+```json
+{
+  "nome": "Ana Demonstração",
+  "email": "ana.demo@festkids.local",
+  "telefone": "(31) 90000-0001"
+}
+```
+
