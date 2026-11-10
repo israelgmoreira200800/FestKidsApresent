@@ -3,7 +3,7 @@
 ## 1. Fundação do repositório
 
 - [x] 1.1 Criar README, AGENTS.md, `.gitignore`, `.env.example` e diretórios mínimos, verificando que a árvore corresponde ao design e nenhum segredo está versionado
-- [ ] 1.2 Confirmar versões atuais e compatíveis das dependências na documentação oficial, registrar `requirements.txt` e verificar a instalação em ambiente virtual limpo
+- [x] 1.2 Confirmar versões atuais e compatíveis das dependências na documentação oficial, registrar `requirements.txt` e verificar a instalação em ambiente virtual limpo
 - [ ] 1.3 Documentar problema, público, escopo, cinco casos de uso e quatro funcionalidades não CRUD, verificando consistência com a proposta OpenSpec
 
 ## 2. Modelo de domínio e banco

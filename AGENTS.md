@@ -15,10 +15,13 @@
 ## Comandos disponíveis nesta fase
 
 ```powershell
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r backend\requirements.txt
+.\.venv\Scripts\python.exe -m pytest backend\tests -q
 openspec validate reconstruir-festkids-do-zero --type change --strict --no-interactive
 openspec status --change reconstruir-festkids-do-zero
 git status --short --branch
 ```
 
-Os comandos de instalação, execução e testes serão adicionados quando esses elementos realmente existirem.
+O comando de execução será adicionado quando a aplicação Flask realmente existir.
 

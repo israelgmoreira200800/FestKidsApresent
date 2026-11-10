@@ -54,3 +54,14 @@ Autenticação, pagamentos, propostas comerciais, avaliações, chat e inteligê
 
 Nunca coloque senhas, chaves ou conexões reais no Git. Copie `backend/.env.example` para um arquivo local ignorado somente quando a configuração do backend for implementada.
 
+## Dependências do backend
+
+O projeto requer Python 3.11 ou superior. Para criar um ambiente isolado e instalar as dependências:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r backend\requirements.txt
+```
+
+O ambiente `.venv` é local e está ignorado pelo Git.
+
