@@ -12,6 +12,8 @@ As decisões e tarefas da reconstrução estão registradas em:
 - `openspec/changes/reconstruir-festkids-do-zero/design.md`
 - `openspec/changes/reconstruir-festkids-do-zero/tasks.md`
 
+Os requisitos do produto estão explicados em `docs/requisitos.md`.
+
 ## Arquitetura planejada
 
 ```text
