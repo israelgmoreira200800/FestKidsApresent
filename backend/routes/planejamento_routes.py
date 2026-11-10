@@ -1,6 +1,9 @@
 from flask import Blueprint
 
-from backend.controllers.planejamento_controller import criar_sugestao
+from backend.controllers.planejamento_controller import (
+    consultar_orcamento,
+    criar_sugestao,
+)
 
 
 planejamento_blueprint = Blueprint(
@@ -13,3 +16,8 @@ planejamento_blueprint = Blueprint(
 @planejamento_blueprint.post("/sugestao")
 def sugerir_planejamento():
     return criar_sugestao()
+
+
+@planejamento_blueprint.get("/<int:festa_id>/orcamento")
+def analisar_orcamento_da_festa(festa_id):
+    return consultar_orcamento(festa_id)

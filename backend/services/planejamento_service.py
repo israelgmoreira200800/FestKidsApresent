@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from backend.errors import ErroConflito, ErroValidacao, RecursoNaoEncontrado
 from backend.extensions import db
 from backend.models import Festa, PlanejamentoItem
@@ -113,4 +115,36 @@ def sugerir_pacote(dados):
         "pacote_substituido": True,
         "categorias_sem_candidato": [],
         "itens": [serializar_item_consultado(item) for item in itens],
+    }
+
+
+def analisar_orcamento(festa_id):
+    resumo = PlanejamentoRepository.buscar_resumo_orcamento(festa_id)
+
+    if not resumo:
+        raise RecursoNaoEncontrado("Festa nao encontrada.")
+
+    orcamento = resumo["orcamento"]
+    total = resumo["total_itens"]
+    convidados = resumo["quantidade_convidados"]
+    saldo = orcamento - total
+    percentual = (total / orcamento * Decimal("100")).quantize(
+        Decimal("0.01")
+    )
+    custo_por_convidado = (total / convidados).quantize(Decimal("0.01"))
+    viavel = total <= orcamento
+    excedente = Decimal("0.00") if viavel else total - orcamento
+
+    return {
+        "festa_id": resumo["festa_id"],
+        "orcamento": format(orcamento, ".2f"),
+        "total": format(total, ".2f"),
+        "saldo": format(saldo, ".2f"),
+        "percentual_utilizado": format(percentual, ".2f"),
+        "custo_por_convidado": format(custo_por_convidado, ".2f"),
+        "excedente": format(excedente, ".2f"),
+        "viavel": viavel,
+        "situacao": (
+            "DENTRO_DO_ORCAMENTO" if viavel else "ACIMA_DO_ORCAMENTO"
+        ),
     }

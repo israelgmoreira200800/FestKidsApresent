@@ -28,3 +28,12 @@ class PlanejamentoRepository:
         resultado.close()
 
         return [dict(linha) for linha in linhas]
+
+    @staticmethod
+    def buscar_resumo_orcamento(festa_id):
+        sql = text("CALL sp_resumo_orcamento(:festa_id)")
+        resultado = db.session.execute(sql, {"festa_id": festa_id})
+        linha = resultado.mappings().one_or_none()
+        resultado.close()
+
+        return dict(linha) if linha else None

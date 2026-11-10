@@ -215,3 +215,9 @@ Para cada categoria, a procedure considera apenas Serviço e Fornecedor disponí
 
 Se alguma categoria não possuir candidato, a resposta usa `completo: false`, informa `categorias_sem_candidato` e mantém o pacote anterior sem alterações.
 
+## Análise de orçamento
+
+`GET /api/planejamentos/{festa_id}/orcamento` analisa o pacote atualmente salvo. A procedure `sp_resumo_orcamento` soma os preços preservados nos itens e devolve os dados básicos da Festa; o Service calcula total, saldo, percentual utilizado, custo por convidado e excedente.
+
+A resposta usa `viavel: true` e `DENTRO_DO_ORCAMENTO` quando o total não ultrapassa o limite. Quando ultrapassa, usa `viavel: false`, `ACIMA_DO_ORCAMENTO` e apresenta o excedente, sem sugerir que o pacote foi aprovado.
+

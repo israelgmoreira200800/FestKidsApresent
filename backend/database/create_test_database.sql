@@ -54,3 +54,22 @@ begin
     order by s.categoria, pi.id;
 end //
 delimiter ;
+
+drop procedure if exists sp_resumo_orcamento;
+
+delimiter //
+create procedure sp_resumo_orcamento(
+    in p_festa_id int
+)
+begin
+    select
+        f.id as festa_id,
+        f.orcamento,
+        f.quantidade_convidados,
+        coalesce(sum(pi.preco_referencia), 0.00) as total_itens
+    from festas f
+    left join planejamento_itens pi on pi.festa_id = f.id
+    where f.id = p_festa_id
+    group by f.id, f.orcamento, f.quantidade_convidados;
+end //
+delimiter ;
