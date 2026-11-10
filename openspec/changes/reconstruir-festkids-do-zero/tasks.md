@@ -32,7 +32,7 @@
 - [x] 5.2 Implementar as cinco operações de Serviço e o vínculo com Fornecedor, verificando preço decimal, capacidade e integridade
 - [x] 5.3 Implementar as cinco operações de Festa e o vínculo com Cliente, verificando data, orçamento, convidados e transições permitidas de status
 - [x] 5.4 Criar as telas de gestão dos quatro recursos, verificando carregamento, vazio, sucesso, erro e funcionamento em tela móvel
-- [ ] 5.5 Executar a matriz das vinte operações cadastrais, verificando que CRUD usa ORM e Controllers não acessam o banco diretamente
+- [x] 5.5 Executar a matriz das vinte operações cadastrais, verificando que CRUD usa ORM e Controllers não acessam o banco diretamente
 
 ## 6. Agregado de planejamento
 

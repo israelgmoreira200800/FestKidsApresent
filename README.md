@@ -14,6 +14,7 @@ As decisões e tarefas da reconstrução estão registradas em:
 
 Os requisitos do produto estão explicados em `docs/requisitos.md`.
 As entidades e seus relacionamentos estão explicados em `docs/modelo-dominio.md`.
+A matriz das vinte operações e a separação das camadas estão explicadas em `docs/matriz-crud.md`.
 O DDL inicial do MySQL está em `backend/database/create_database.sql`.
 
 O script cria o banco `festkids` e as tabelas `clientes`, `fornecedores`, `servicos`, `festas` e `planejamento_itens`. Ele foi executado e verificado em MySQL Community Server 8.4.9. A configuração segura do usuário da aplicação será adicionada em uma etapa própria.
