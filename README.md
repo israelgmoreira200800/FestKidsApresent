@@ -166,3 +166,15 @@ O campo booleano `disponivel` controla se o fornecedor aceita novas seleções e
 
 Cada serviço exige um `fornecedor_id` existente, preço decimal com até duas casas e capacidade maior que zero. As categorias aceitas são `BUFFET`, `DECORACAO`, `FOTOGRAFIA`, `RECREACAO`, `BOLO_E_DOCES` e `ESPACO`.
 
+## Endpoints de festas
+
+| Método | Endpoint | Operação |
+|---|---|---|
+| `POST` | `/api/festas` | Cadastrar festa |
+| `GET` | `/api/festas` | Listar festas |
+| `GET` | `/api/festas/{id}` | Consultar festa |
+| `PUT` | `/api/festas/{id}` | Atualizar festa |
+| `DELETE` | `/api/festas/{id}` | Excluir festa |
+
+Cada festa exige um `cliente_id` existente, data no formato `AAAA-MM-DD`, quantidade de convidados maior que zero e orçamento decimal maior que zero. Toda festa começa em `RASCUNHO`; o CRUD comum não pode mudar o status para `CONFIRMADA`.
+
