@@ -106,5 +106,5 @@ Falhas internas retornam uma mensagem genérica e não expõem traceback ou deta
 
 ## Primeiro Model ORM
 
-`backend/models/cliente.py` mapeia a classe `Cliente` para a tabela `clientes`. O método `para_dict()` prepara seus atributos para respostas JSON, mantendo a persistência simples sob responsabilidade do SQLAlchemy.
+`backend/models/cliente.py` mapeia a classe `Cliente` para a tabela `clientes` usando a sintaxe clássica `db.Column`. O método `para_dict()` prepara seus atributos para respostas JSON, mantendo a persistência simples sob responsabilidade do SQLAlchemy.
 
