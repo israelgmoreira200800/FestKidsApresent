@@ -100,3 +100,7 @@ Erros de validação, recurso não encontrado, conflito e falha interna usam o m
 
 Falhas internas retornam uma mensagem genérica e não expõem traceback ou detalhes técnicos.
 
+## Proteções das requisições
+
+`FRONTEND_ORIGINS` contém os endereços locais autorizados a consumir `/api/*` pelo navegador. `MAX_CONTENT_LENGTH` limita o corpo de cada requisição; o valor padrão é `1000000` bytes, adequado para os dados JSON desta versão sem uploads.
+

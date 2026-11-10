@@ -25,8 +25,21 @@ def registrar_tratamento_erros(app):
 
     @app.errorhandler(HTTPException)
     def tratar_erro_http(erro):
-        codigo = "nao_encontrado" if erro.code == 404 else "erro_http"
-        return criar_resposta_erro(codigo, erro.description, erro.code)
+        if erro.code == 404:
+            return criar_resposta_erro(
+                "nao_encontrado",
+                "O recurso solicitado nao foi encontrado.",
+                404,
+            )
+
+        if erro.code == 413:
+            return criar_resposta_erro(
+                "requisicao_muito_grande",
+                "A requisicao ultrapassou o tamanho permitido.",
+                413,
+            )
+
+        return criar_resposta_erro("erro_http", erro.description, erro.code)
 
     @app.errorhandler(Exception)
     def tratar_erro_inesperado(erro):

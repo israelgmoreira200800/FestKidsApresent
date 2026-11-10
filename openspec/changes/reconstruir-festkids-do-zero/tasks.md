@@ -17,7 +17,7 @@
 
 - [x] 3.1 Criar a factory Flask, configuração por ambiente e inicialização do SQLAlchemy, verificando uma rota de saúde com cliente de teste
 - [x] 3.2 Criar o tratamento JSON padronizado para validação, ausência, conflito e falha interna, verificando códigos 400, 404, 409 e 500 sem traceback
-- [ ] 3.3 Configurar CORS apenas para origens locais previstas e limite de corpo, verificando origem permitida e origem recusada
+- [x] 3.3 Configurar CORS apenas para origens locais previstas e limite de corpo, verificando origem permitida e origem recusada
 
 ## 4. Primeira fatia vertical: Cliente
 

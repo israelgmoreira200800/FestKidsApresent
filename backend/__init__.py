@@ -2,7 +2,7 @@ from flask import Flask
 
 from backend.config import Configuracao
 from backend.error_handlers import registrar_tratamento_erros
-from backend.extensions import db
+from backend.extensions import cors, db
 from backend.routes import registrar_rotas
 
 
@@ -17,6 +17,14 @@ def create_app(configuracao_adicional=None):
         raise RuntimeError("Defina DATABASE_URL antes de iniciar o FestKids.")
 
     db.init_app(app)
+    cors.init_app(
+        app,
+        resources={
+            r"/api/*": {
+                "origins": app.config["FRONTEND_ORIGINS"],
+            }
+        },
+    )
     registrar_rotas(app)
     registrar_tratamento_erros(app)
 
