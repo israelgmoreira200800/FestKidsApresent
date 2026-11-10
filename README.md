@@ -4,7 +4,7 @@ Plataforma acadêmica para planejamento de festas infantis, reconstruída do zer
 
 ## Estado atual
 
-O projeto está na fase de fundação. Ainda não existe código executável da aplicação.
+O projeto já possui a base executável da API Flask, tratamento de erros, proteções das requisições e o primeiro Model ORM: `Cliente`.
 
 As decisões e tarefas da reconstrução estão registradas em:
 
@@ -103,4 +103,8 @@ Falhas internas retornam uma mensagem genérica e não expõem traceback ou deta
 ## Proteções das requisições
 
 `FRONTEND_ORIGINS` contém os endereços locais autorizados a consumir `/api/*` pelo navegador. `MAX_CONTENT_LENGTH` limita o corpo de cada requisição; o valor padrão é `1000000` bytes, adequado para os dados JSON desta versão sem uploads.
+
+## Primeiro Model ORM
+
+`backend/models/cliente.py` mapeia a classe `Cliente` para a tabela `clientes`. O método `para_dict()` prepara seus atributos para respostas JSON, mantendo a persistência simples sob responsabilidade do SQLAlchemy.
 
