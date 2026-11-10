@@ -120,3 +120,13 @@ O endpoint `POST /api/clientes` recebe JSON com `nome`, `email` e `telefone`. A 
 }
 ```
 
+## Executar o frontend
+
+Com a API em execução, abra outro terminal e inicie o servidor estático:
+
+```powershell
+.\.venv\Scripts\python.exe -m http.server 5500 --directory frontend
+```
+
+Depois, acesse `http://127.0.0.1:5500`. A tela em `frontend/index.html` envia o formulário para a API por meio de `frontend/js/clientes.js`, enquanto `frontend/css/styles.css` contém todo o visual responsivo.
+
