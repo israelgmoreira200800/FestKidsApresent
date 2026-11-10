@@ -200,3 +200,18 @@ Essa cópia preserva o histórico: alterar depois o preço-base do Serviço não
 
 As consultas ficam nas procedures criadas pelos scripts do banco. O Repository contém somente `CALL`, parâmetros nomeados e conversão do resultado, seguindo o exemplo usado em aula. Ele usa `db.session.execute` e não executa `commit`; por isso, participa da mesma transação controlada pelo Service e permite desfazer toda a operação com `rollback`.
 
+## Sugestão de pacote
+
+`POST /api/planejamentos/sugestao` recebe o identificador da Festa e as categorias desejadas:
+
+```json
+{
+  "festa_id": 1,
+  "categorias": ["BUFFET", "DECORACAO"]
+}
+```
+
+Para cada categoria, a procedure considera apenas Serviço e Fornecedor disponíveis com capacidade suficiente. A ordenação usa menor preço e depois menor ID, tornando a escolha previsível. O Service preserva o preço escolhido no Item de Planejamento e substitui o pacote somente quando todas as categorias possuem candidato.
+
+Se alguma categoria não possuir candidato, a resposta usa `completo: false`, informa `categorias_sem_candidato` e mantém o pacote anterior sem alterações.
+
