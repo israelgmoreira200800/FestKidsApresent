@@ -85,3 +85,18 @@ Copie `backend/.env.example` para `backend/.env.local` e preencha `DATABASE_URL`
 
 A rota `GET http://127.0.0.1:5000/api/saude` confirma que a API está funcionando.
 
+## Formato dos erros da API
+
+Erros de validação, recurso não encontrado, conflito e falha interna usam o mesmo formato JSON:
+
+```json
+{
+  "erro": {
+    "codigo": "validacao",
+    "mensagem": "Mensagem compreensível"
+  }
+}
+```
+
+Falhas internas retornam uma mensagem genérica e não expõem traceback ou detalhes técnicos.
+
