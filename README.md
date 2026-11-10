@@ -130,3 +130,15 @@ Com a API em execução, abra outro terminal e inicie o servidor estático:
 
 Depois, acesse `http://127.0.0.1:5500`. A tela em `frontend/index.html` envia o formulário para a API por meio de `frontend/js/clientes.js`, enquanto `frontend/css/styles.css` contém todo o visual responsivo.
 
+## Endpoints de clientes
+
+| Método | Endpoint | Operação |
+|---|---|---|
+| `POST` | `/api/clientes` | Cadastrar cliente |
+| `GET` | `/api/clientes` | Listar clientes |
+| `GET` | `/api/clientes/{id}` | Consultar cliente |
+| `PUT` | `/api/clientes/{id}` | Atualizar cliente |
+| `DELETE` | `/api/clientes/{id}` | Excluir cliente |
+
+A exclusão retorna conflito `409` quando o cliente possui uma festa vinculada.
+

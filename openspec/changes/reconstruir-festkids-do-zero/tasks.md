@@ -24,7 +24,7 @@
 - [x] 4.1 Implementar Model Cliente e serialização, verificando persistência e recuperação no MySQL de teste
 - [x] 4.2 Implementar cadastro de cliente em Route, Controller e Service, verificando sucesso e entradas inválidas por testes da API
 - [x] 4.3 Criar a primeira tela de cliente e integração por fetch, verificando cadastro completo do navegador até o banco
-- [ ] 4.4 Completar listar, consultar, atualizar e excluir cliente, verificando as cinco operações e conflito de vínculo
+- [x] 4.4 Completar listar, consultar, atualizar e excluir cliente, verificando as cinco operações e conflito de vínculo
 
 ## 5. Demais cadastros com ORM
 

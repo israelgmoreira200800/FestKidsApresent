@@ -1,6 +1,6 @@
 from sqlalchemy.exc import IntegrityError
 
-from backend.errors import ErroConflito, ErroValidacao
+from backend.errors import ErroConflito, ErroValidacao, RecursoNaoEncontrado
 from backend.extensions import db
 from backend.models import Cliente
 
@@ -21,7 +21,7 @@ def validar_texto_obrigatorio(dados, campo, tamanho_maximo):
     return valor
 
 
-def cadastrar_cliente(dados):
+def validar_dados_cliente(dados):
     if not isinstance(dados, dict):
         raise ErroValidacao("Envie os dados do cliente em formato JSON.")
 
@@ -32,8 +32,32 @@ def cadastrar_cliente(dados):
     if email.count("@") != 1 or "." not in email.split("@")[1]:
         raise ErroValidacao("Informe um e-mail valido.")
 
-    if Cliente.query.filter_by(email=email).first():
+    return nome, email, telefone
+
+
+def verificar_email_em_uso(email, cliente_id=None):
+    cliente_existente = Cliente.query.filter_by(email=email).first()
+
+    if cliente_existente and cliente_existente.id != cliente_id:
         raise ErroConflito("Ja existe um cliente com este e-mail.")
+
+
+def buscar_cliente(cliente_id):
+    cliente = Cliente.query.filter_by(id=cliente_id).first()
+
+    if not cliente:
+        raise RecursoNaoEncontrado("Cliente nao encontrado.")
+
+    return cliente
+
+
+def listar_clientes():
+    return Cliente.query.order_by(Cliente.id).all()
+
+
+def cadastrar_cliente(dados):
+    nome, email, telefone = validar_dados_cliente(dados)
+    verificar_email_em_uso(email)
 
     cliente = Cliente(
         nome=nome,
@@ -49,3 +73,34 @@ def cadastrar_cliente(dados):
         raise ErroConflito("Ja existe um cliente com este e-mail.")
 
     return cliente
+
+
+def atualizar_cliente(cliente_id, dados):
+    cliente = buscar_cliente(cliente_id)
+    nome, email, telefone = validar_dados_cliente(dados)
+    verificar_email_em_uso(email, cliente.id)
+
+    cliente.nome = nome
+    cliente.email = email
+    cliente.telefone = telefone
+
+    try:
+        db.session.commit()
+    except IntegrityError:
+        db.session.rollback()
+        raise ErroConflito("Ja existe um cliente com este e-mail.")
+
+    return cliente
+
+
+def excluir_cliente(cliente_id):
+    cliente = buscar_cliente(cliente_id)
+
+    try:
+        db.session.delete(cliente)
+        db.session.commit()
+    except IntegrityError:
+        db.session.rollback()
+        raise ErroConflito(
+            "O cliente nao pode ser excluido porque possui festa vinculada."
+        )
