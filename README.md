@@ -196,7 +196,7 @@ Essa cópia preserva o histórico: alterar depois o preço-base do Serviço não
 
 ## Repository de planejamento
 
-`backend/repositories/planejamento_repository.py` concentra consultas especializadas que combinam itens, serviços e fornecedores. Seus primeiros helpers buscam serviços elegíveis e listam os itens atuais de uma Festa.
+`backend/repositories/planejamento_repository.py` concentra chamadas às stored procedures que combinam itens, serviços e fornecedores. Seus primeiros helpers chamam `sp_servicos_elegiveis` e `sp_itens_planejamento_por_festa`.
 
-As entradas são enviadas ao SQL como parâmetros nomeados, separados do texto da consulta. O Repository usa `db.session.execute` e não executa `commit`; por isso, participa da mesma transação controlada pelo Service e permite desfazer toda a operação com `rollback`.
+As consultas ficam nas procedures criadas pelos scripts do banco. O Repository contém somente `CALL`, parâmetros nomeados e conversão do resultado, seguindo o exemplo usado em aula. Ele usa `db.session.execute` e não executa `commit`; por isso, participa da mesma transação controlada pelo Service e permite desfazer toda a operação com `rollback`.
 

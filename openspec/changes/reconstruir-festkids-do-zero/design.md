@@ -36,7 +36,7 @@ Alternativa considerada: concentrar todas as regras em Models Active Record redu
 
 ### Repository somente para operações especializadas
 
-CRUD simples usará ORM nas Models. Sugestões, agregações de orçamento, conflitos de agenda e confirmação coordenada usarão um Repository de planejamento. As consultas poderão usar SQL, views ou procedures compatíveis com os exemplos estudados, sempre com parâmetros em vez de concatenar entradas do usuário.
+CRUD simples usará ORM nas Models. Sugestões, agregações de orçamento, conflitos de agenda e confirmação coordenada usarão um Repository de planejamento. Seguindo o exemplo estudado em aula, as consultas especializadas ficarão em stored procedures do MySQL e o Repository conterá somente chamadas `CALL` parametrizadas e a conversão do resultado.
 
 Alternativa considerada: um Repository para cada entidade duplicaria operações do ORM e criaria cerimônia sem regra adicional.
 
