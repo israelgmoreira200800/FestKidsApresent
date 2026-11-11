@@ -14,6 +14,7 @@ As decisões e tarefas da reconstrução estão registradas em:
 
 Os requisitos do produto estão explicados em `docs/requisitos.md`.
 As entidades e seus relacionamentos estão explicados em `docs/modelo-dominio.md`.
+A arquitetura implementada e os fluxos estão explicados em `docs/arquitetura.md`.
 A matriz das vinte operações e a separação das camadas estão explicadas em `docs/matriz-crud.md`.
 O DDL inicial do MySQL está em `backend/database/create_database.sql`.
 
