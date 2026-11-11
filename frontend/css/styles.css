@@ -239,6 +239,18 @@ body {
     line-height: 1.55;
 }
 
+.rodape-portal {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 46px;
+    padding-top: 24px;
+    color: var(--cor-texto-suave);
+    border-top: 1px solid var(--cor-borda);
+    font-size: 0.86rem;
+}
+
+.rodape-portal a { color: var(--cor-primaria); font-weight: 700; }
+
 .conteudo-principal {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(340px, 480px);
@@ -1115,6 +1127,29 @@ a:focus-visible {
     font-weight: 700;
 }
 
+.navegacao-demo {
+    display: flex;
+    gap: 4px;
+    justify-self: end;
+    overflow-x: auto;
+}
+
+.navegacao-demo a {
+    padding: 8px 10px;
+    color: var(--cor-texto-suave);
+    border-radius: 8px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.navegacao-demo a:hover,
+.navegacao-demo a.ativo {
+    color: white;
+    background: var(--cor-primaria);
+}
+
 .estrutura-demo {
     display: grid;
     grid-template-columns: 270px minmax(0, 1fr);
@@ -1398,17 +1433,132 @@ button.acao-compacta {
     border-radius: 13px;
 }
 
+.pagina-termos {
+    width: min(1060px, calc(100% - 40px));
+    margin: 0 auto;
+    padding: 54px 0 80px;
+}
+
+.cabecalho-termos {
+    max-width: 800px;
+}
+
+.cabecalho-termos h1 {
+    margin: 8px 0 14px;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    line-height: 1;
+    letter-spacing: -0.055em;
+}
+
+.cabecalho-termos > p:not(.etiqueta) {
+    margin: 0 0 18px;
+    color: var(--cor-texto-suave);
+    font-size: 1.08rem;
+}
+
+.cabecalho-termos > span {
+    color: var(--cor-primaria);
+    font-size: 0.82rem;
+    font-weight: 700;
+}
+
+.pagina-termos > .aviso-demo { margin: 34px 0; }
+
+.conteudo-termos {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: 42px;
+    align-items: start;
+}
+
+.conteudo-termos > nav {
+    display: grid;
+    gap: 6px;
+    position: sticky;
+    top: 20px;
+    padding: 20px;
+    background: white;
+    border: 1px solid var(--cor-borda);
+    border-radius: 16px;
+}
+
+.conteudo-termos > nav strong { margin-bottom: 8px; }
+
+.conteudo-termos > nav a {
+    padding: 7px 0;
+    color: var(--cor-texto-suave);
+    font-size: 0.84rem;
+    text-decoration: none;
+}
+
+.conteudo-termos > nav a:hover { color: var(--cor-primaria); }
+
+.conteudo-termos article {
+    display: grid;
+    gap: 12px;
+}
+
+.conteudo-termos article section {
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr);
+    gap: 16px;
+    padding: 26px;
+    background: white;
+    border: 1px solid var(--cor-borda);
+    border-radius: 18px;
+}
+
+.conteudo-termos article section > span {
+    display: grid;
+    width: 38px;
+    height: 38px;
+    place-items: center;
+    color: var(--cor-primaria);
+    background: #eee7ff;
+    border-radius: 10px;
+    font-size: 0.72rem;
+    font-weight: 700;
+}
+
+.conteudo-termos h2 {
+    margin: 4px 0 10px;
+    font-size: 1.25rem;
+}
+
+.conteudo-termos article p {
+    margin: 0;
+    color: var(--cor-texto-suave);
+    line-height: 1.7;
+}
+
+.rodape-termos {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 30px;
+    padding-top: 24px;
+    border-top: 1px solid var(--cor-borda);
+}
+
+.rodape-termos .botao-link { min-height: 44px; }
+.rodape-termos p { color: var(--cor-texto-suave); font-size: 0.85rem; }
+
 @media (max-width: 900px) {
     .estrutura-demo { grid-template-columns: 1fr; }
     .menu-demo { display: block; padding: 24px; }
     .menu-demo nav { display: flex; max-width: 100%; overflow-x: auto; margin-top: 20px; }
     .menu-demo nav a { white-space: nowrap; }
     .nota-demo { margin-bottom: 0; border: 0; }
+    .conteudo-termos { grid-template-columns: 1fr; }
+    .conteudo-termos > nav { position: static; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .conteudo-termos > nav strong { grid-column: 1 / -1; }
 }
 
 @media (max-width: 680px) {
     .barra-demo { grid-template-columns: 1fr auto; }
     .selo-demo { grid-column: 1 / -1; grid-row: 2; justify-self: start; }
+    .navegacao-demo { grid-column: 1 / -1; grid-row: 3; justify-self: stretch; }
     .conteudo-demo { width: min(100% - 28px, 1160px); padding-top: 28px; }
     .cabecalho-demo { align-items: flex-start; flex-direction: column; }
     .indicadores-demo,
@@ -1417,6 +1567,11 @@ button.acao-compacta {
     .aviso-demo { flex-direction: column; }
     .linha-tabela-demo { grid-template-columns: 1fr 1fr; }
     .linha-tabela-demo.cabecalho { display: none; }
+    .rodape-portal,
+    .rodape-termos { align-items: flex-start; flex-direction: column; }
+    .pagina-termos { width: min(100% - 28px, 1060px); padding-top: 30px; }
+    .conteudo-termos > nav { grid-template-columns: 1fr 1fr; }
+    .conteudo-termos article section { grid-template-columns: 1fr; padding: 22px; }
 }
 
 @media (max-width: 820px) {

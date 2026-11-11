@@ -13,6 +13,7 @@ O FestKids precisa ser reconstruído em uma base pequena, coerente e didática p
 - Criar frontend responsivo em HTML, CSS e JavaScript, separado da API Flask e integrado por requisições HTTP com JSON.
 - Reorganizar o frontend em experiências identificáveis de planejamento do cliente, gestão acadêmica de fornecedores e cadastros, sem simular autenticação ou recursos comerciais ausentes.
 - Adicionar protótipos visuais separados para cliente e fornecedor, claramente identificados como demonstrações estáticas e sem integração com a API.
+- Integrar os protótipos pela navegação do frontend e disponibilizar termos de uso acadêmicos acessíveis em todas as experiências.
 - Usar MySQL com integridade referencial, valores monetários decimais e consultas especializadas parametrizadas no Repository.
 - Adicionar testes, documentação arquitetural, diagramas, fluxogramas e roteiro de apresentação.
 - Excluir da primeira versão autenticação, pagamentos, propostas comerciais, avaliações, chat, uploads, IA de recomendação e publicação em produção.

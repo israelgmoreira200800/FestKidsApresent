@@ -78,3 +78,14 @@ O frontend SHALL apresentar telas estáticas separadas para ilustrar uma futura 
 - **WHEN** o visitante abre o protótipo do fornecedor
 - **THEN** a página identifica o conteúdo como ilustrativo, não realiza requisições e mantém ações indisponíveis desabilitadas
 
+### Requirement: Navegação integrada e termos de uso
+O frontend SHALL conectar a entrada, as demonstrações de cliente e fornecedor, o sistema funcional e os termos de uso por links visíveis.
+
+#### Scenario: Alternância entre experiências
+- **WHEN** o visitante está em uma das telas demonstrativas
+- **THEN** ele consegue acessar a outra demonstração, retornar ao portal, abrir o sistema funcional e consultar os termos
+
+#### Scenario: Consulta dos termos
+- **WHEN** o visitante abre os termos de uso
+- **THEN** a página informa finalidade acadêmica, caráter ilustrativo, ausência de contratação e cuidados com dados fictícios
+
