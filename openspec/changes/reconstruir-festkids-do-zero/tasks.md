@@ -51,7 +51,7 @@
 - [x] 7.4 Integrar agenda e confirmação, verificando conflito, processamento, prevenção de clique duplicado e resultado sem alegação comercial
 - [x] 7.5 Validar responsividade e acessibilidade básica da jornada, verificando ausência de rolagem horizontal, rótulos, foco visível e contraste
 - [x] 7.6 Reorganizar a página inicial como entrada das experiências disponíveis, verificando textos fiéis ao escopo e acesso às funções existentes
-- [ ] 7.7 Criar navegação contextual para planejamento, fornecedores e cadastros sem duplicar integrações, verificando todos os links em computador e celular
+- [x] 7.7 Criar navegação contextual para planejamento, fornecedores e cadastros sem duplicar integrações, verificando todos os links em computador e celular
 - [ ] 7.8 Evoluir a apresentação de fornecedores, serviços e planejamento com os dados reais da API, verificando carregamento, vazio, sucesso e erro
 - [ ] 7.9 Validar a reformulação completa no navegador, verificando responsividade, teclado, console e ausência de funcionalidades fictícias
 
