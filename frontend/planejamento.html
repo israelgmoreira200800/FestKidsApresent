@@ -113,6 +113,7 @@
                     <button id="botao-analisar-orcamento" type="button" disabled>Analisar orçamento</button>
                     <div id="mensagem-orcamento" class="mensagem-planejamento" role="status" aria-live="polite"></div>
                     <div id="resultado-orcamento" class="resultado-orcamento" aria-live="polite"></div>
+                    <button id="botao-ir-agenda" type="button" disabled>Continuar para a agenda</button>
                 </div>
             </section>
 
@@ -120,12 +121,26 @@
                 <p class="etiqueta">Etapa 4</p>
                 <h2 id="titulo-etapa-agenda">Verificar a agenda</h2>
                 <p>O sistema verificará se os fornecedores continuam livres durante todo o dia da festa.</p>
+                <div class="bloco-interacao">
+                    <p id="resumo-agenda-festa" class="resumo-festa">Nenhuma festa selecionada.</p>
+                    <button id="botao-verificar-agenda" type="button" disabled>Verificar agenda</button>
+                    <div id="mensagem-agenda" class="mensagem-planejamento" role="status" aria-live="polite"></div>
+                    <div id="resultado-agenda" class="resultado-agenda" aria-live="polite"></div>
+                    <button id="botao-ir-confirmacao" type="button" disabled>Continuar para a confirmação</button>
+                </div>
             </section>
 
             <section id="painel-confirmacao" class="painel-etapa" data-painel="confirmacao" aria-labelledby="titulo-etapa-confirmacao" tabindex="-1" hidden>
                 <p class="etiqueta">Etapa 5</p>
                 <h2 id="titulo-etapa-confirmacao">Confirmar o planejamento</h2>
                 <p>A confirmação será apresentada como reserva acadêmica, sem pagamento ou contrato comercial.</p>
+                <div class="bloco-interacao">
+                    <p id="resumo-confirmacao-festa" class="resumo-festa">Nenhuma festa selecionada.</p>
+                    <div class="aviso-academico"><strong>Reserva acadêmica</strong><span>Esta ação não realiza pagamento e não cria contrato comercial.</span></div>
+                    <button id="botao-confirmar-planejamento" type="button" disabled>Confirmar reserva acadêmica</button>
+                    <div id="mensagem-confirmacao" class="mensagem-planejamento" role="status" aria-live="polite"></div>
+                    <div id="resultado-confirmacao" class="resultado-confirmacao" aria-live="polite"></div>
+                </div>
             </section>
         </div>
     </main>

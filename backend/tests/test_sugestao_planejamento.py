@@ -147,6 +147,16 @@ def test_sugere_menor_preco_desempata_por_id_e_preserva_preco():
         ]
         assert dados["itens"][0]["preco_referencia"] == "900.00"
 
+        repeticao = client.post(
+            "/api/planejamentos/sugestao",
+            json={
+                "festa_id": festa_id,
+                "categorias": ["buffet", "decoracao"],
+            },
+        )
+        assert repeticao.status_code == 200
+        assert len(repeticao.get_json()["itens"]) == 2
+
         with app.app_context():
             servico = Servico.query.filter_by(id=buffet_id).first()
             servico.preco_base = Decimal("1200.00")

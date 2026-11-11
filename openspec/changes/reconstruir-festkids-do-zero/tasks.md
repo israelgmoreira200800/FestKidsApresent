@@ -48,7 +48,7 @@
 - [x] 7.1 Criar navegação identificável pelas cinco etapas, verificando acesso por teclado e indicação da etapa atual
 - [x] 7.2 Integrar a tela de sugestão com a API, verificando categorias selecionadas, pacote resultante e ausência de candidato
 - [x] 7.3 Integrar a análise de orçamento, verificando formatação monetária e mensagens de viabilidade ou excedente
-- [ ] 7.4 Integrar agenda e confirmação, verificando conflito, processamento, prevenção de clique duplicado e resultado sem alegação comercial
+- [x] 7.4 Integrar agenda e confirmação, verificando conflito, processamento, prevenção de clique duplicado e resultado sem alegação comercial
 - [ ] 7.5 Validar responsividade e acessibilidade básica da jornada, verificando ausência de rolagem horizontal, rótulos, foco visível e contraste
 
 ## 8. Testes e qualidade

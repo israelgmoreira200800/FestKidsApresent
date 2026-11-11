@@ -14,9 +14,20 @@ const resumoOrcamentoFesta = document.getElementById("resumo-orcamento-festa");
 const botaoAnalisarOrcamento = document.getElementById("botao-analisar-orcamento");
 const mensagemOrcamento = document.getElementById("mensagem-orcamento");
 const resultadoOrcamento = document.getElementById("resultado-orcamento");
+const botaoIrAgenda = document.getElementById("botao-ir-agenda");
+const resumoAgendaFesta = document.getElementById("resumo-agenda-festa");
+const botaoVerificarAgenda = document.getElementById("botao-verificar-agenda");
+const mensagemAgenda = document.getElementById("mensagem-agenda");
+const resultadoAgenda = document.getElementById("resultado-agenda");
+const botaoIrConfirmacao = document.getElementById("botao-ir-confirmacao");
+const resumoConfirmacaoFesta = document.getElementById("resumo-confirmacao-festa");
+const botaoConfirmarPlanejamento = document.getElementById("botao-confirmar-planejamento");
+const mensagemConfirmacao = document.getElementById("mensagem-confirmacao");
+const resultadoConfirmacao = document.getElementById("resultado-confirmacao");
 
 let festasDisponiveis = [];
 let festaSelecionada = null;
+let planejamentoConfirmado = false;
 
 const nomesEtapas = {
     festa: "Festa",
@@ -117,6 +128,45 @@ function renderizarAnaliseOrcamento(analise) {
     resultadoOrcamento.replaceChildren(situacao, indicadores);
 }
 
+function renderizarAgenda(agenda) {
+    if (agenda.disponivel) {
+        resultadoAgenda.replaceChildren(
+            criarTexto("h3", "Fornecedores disponíveis", "titulo-resultado"),
+            criarTexto("p", `Não foram encontrados conflitos para ${agenda.data}.`)
+        );
+        return;
+    }
+
+    resultadoAgenda.replaceChildren(
+        criarTexto("h3", "Conflitos encontrados", "titulo-resultado"),
+        criarTexto("p", "Um ou mais fornecedores já estão reservados durante todo o dia da festa.")
+    );
+    const lista = document.createElement("div");
+    lista.className = "lista-conflitos";
+    agenda.conflitos.forEach((conflito) => {
+        const item = document.createElement("article");
+        item.className = "item-conflito";
+        item.append(
+            criarTexto("strong", conflito.fornecedor_nome),
+            criarTexto("span", conflito.festa_conflitante_nome),
+            criarTexto("span", conflito.data)
+        );
+        lista.appendChild(item);
+    });
+    resultadoAgenda.appendChild(lista);
+}
+
+function renderizarConfirmacao(resultado) {
+    const cartao = document.createElement("section");
+    cartao.className = "confirmacao-concluida";
+    cartao.append(
+        criarTexto("h3", "Reserva acadêmica confirmada"),
+        criarTexto("p", resultado.mensagem),
+        criarTexto("span", `Status: ${resultado.status}`)
+    );
+    resultadoConfirmacao.replaceChildren(cartao);
+}
+
 async function carregarFestas() {
     estadoFestas.textContent = "Carregando festas...";
     try {
@@ -150,6 +200,8 @@ botaoEscolherFesta.addEventListener("click", () => {
     if (!festaSelecionada) return;
     resumoFesta.textContent = `${festaSelecionada.nome} • ${festaSelecionada.data} • ${festaSelecionada.quantidade_convidados} convidados`;
     resumoOrcamentoFesta.textContent = resumoFesta.textContent;
+    resumoAgendaFesta.textContent = resumoFesta.textContent;
+    resumoConfirmacaoFesta.textContent = resumoFesta.textContent;
     botaoSugerir.disabled = false;
     window.location.hash = "sugestao";
     mostrarEtapa("sugestao", true);
@@ -209,6 +261,8 @@ botaoAnalisarOrcamento.addEventListener("click", async () => {
     try {
         const analise = await requisicaoApi(`/api/planejamentos/${festaSelecionada.id}/orcamento`);
         renderizarAnaliseOrcamento(analise);
+        botaoIrAgenda.disabled = !analise.viavel;
+        botaoVerificarAgenda.disabled = !analise.viavel;
         exibirMensagemPlanejamento(
             mensagemOrcamento,
             analise.viavel ? "O pacote cabe no orçamento." : "O pacote ultrapassa o orçamento.",
@@ -219,6 +273,61 @@ botaoAnalisarOrcamento.addEventListener("click", async () => {
     } finally {
         botaoAnalisarOrcamento.disabled = false;
         botaoAnalisarOrcamento.textContent = "Analisar orçamento";
+    }
+});
+
+botaoIrAgenda.addEventListener("click", () => {
+    window.location.hash = "agenda";
+    mostrarEtapa("agenda", true);
+});
+
+botaoVerificarAgenda.addEventListener("click", async () => {
+    if (!festaSelecionada) return;
+    botaoVerificarAgenda.disabled = true;
+    botaoVerificarAgenda.textContent = "Verificando...";
+    exibirMensagemPlanejamento(mensagemAgenda, "Consultando a agenda dos fornecedores...");
+    resultadoAgenda.replaceChildren();
+    try {
+        const agenda = await requisicaoApi(`/api/planejamentos/${festaSelecionada.id}/agenda`);
+        renderizarAgenda(agenda);
+        botaoIrConfirmacao.disabled = !agenda.disponivel;
+        botaoConfirmarPlanejamento.disabled = !agenda.disponivel;
+        exibirMensagemPlanejamento(
+            mensagemAgenda,
+            agenda.disponivel ? "A agenda está livre." : "Existem conflitos de agenda.",
+            agenda.disponivel ? "sucesso" : "erro"
+        );
+    } catch (erro) {
+        botaoIrConfirmacao.disabled = true;
+        botaoConfirmarPlanejamento.disabled = true;
+        exibirMensagemPlanejamento(mensagemAgenda, `Erro: ${erro.message}`, "erro");
+    } finally {
+        botaoVerificarAgenda.disabled = false;
+        botaoVerificarAgenda.textContent = "Verificar agenda";
+    }
+});
+
+botaoIrConfirmacao.addEventListener("click", () => {
+    window.location.hash = "confirmacao";
+    mostrarEtapa("confirmacao", true);
+});
+
+botaoConfirmarPlanejamento.addEventListener("click", async () => {
+    if (!festaSelecionada || planejamentoConfirmado) return;
+    botaoConfirmarPlanejamento.disabled = true;
+    botaoConfirmarPlanejamento.textContent = "Confirmando...";
+    exibirMensagemPlanejamento(mensagemConfirmacao, "Revalidando pacote, orçamento e agenda...");
+    resultadoConfirmacao.replaceChildren();
+    try {
+        const resultado = await requisicaoApi(`/api/planejamentos/${festaSelecionada.id}/confirmacao`, { method: "POST" });
+        planejamentoConfirmado = true;
+        renderizarConfirmacao(resultado);
+        exibirMensagemPlanejamento(mensagemConfirmacao, "Reserva acadêmica confirmada com sucesso.", "sucesso");
+    } catch (erro) {
+        exibirMensagemPlanejamento(mensagemConfirmacao, `Erro: ${erro.message}`, "erro");
+    } finally {
+        botaoConfirmarPlanejamento.disabled = planejamentoConfirmado;
+        botaoConfirmarPlanejamento.textContent = planejamentoConfirmado ? "Reserva já confirmada" : "Confirmar reserva acadêmica";
     }
 });
 

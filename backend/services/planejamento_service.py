@@ -95,6 +95,7 @@ def sugerir_pacote(dados):
         ).all()
         for item in itens_anteriores:
             db.session.delete(item)
+        db.session.flush()
 
         for servico in servicos_escolhidos:
             db.session.add(

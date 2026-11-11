@@ -756,6 +756,69 @@ button.botao-secundario {
     font-size: 1rem;
 }
 
+.resultado-agenda,
+.resultado-confirmacao {
+    margin-top: 24px;
+}
+
+.resultado-agenda > p {
+    margin: 0;
+}
+
+.lista-conflitos {
+    display: grid;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.item-conflito {
+    background: #fff1f3;
+    border: 1px solid #f2a9b3;
+    border-radius: 14px;
+    color: #8e2637;
+    display: grid;
+    gap: 4px;
+    padding: 16px;
+}
+
+.item-conflito span {
+    font-size: 0.88rem;
+}
+
+.aviso-academico {
+    background: #fff8e8;
+    border: 1px solid #f0cf83;
+    border-radius: 14px;
+    color: #704b00;
+    display: grid;
+    gap: 4px;
+    margin-bottom: 18px;
+    padding: 16px;
+}
+
+.confirmacao-concluida {
+    background: #edfff7;
+    border: 1px solid #9fdec3;
+    border-radius: 16px;
+    color: #155b42;
+    padding: 20px;
+}
+
+.confirmacao-concluida h3,
+.confirmacao-concluida p {
+    margin: 0;
+}
+
+.confirmacao-concluida p {
+    margin: 8px 0 14px;
+}
+
+.confirmacao-concluida span {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+}
+
 .categoria-item {
     color: var(--cor-primaria);
     font-size: 0.72rem;
