@@ -58,6 +58,12 @@ HTML semântico, CSS e JavaScript em módulos consumirão a API por `fetch`. Iss
 
 Alternativa considerada: um framework de frontend adicionaria conceitos e build que não são necessários para os cinco fluxos.
 
+### Experiências separadas por finalidade, sem autenticação simulada
+
+O frontend apresentará uma entrada clara para planejamento do responsável, gestão acadêmica de fornecedores e serviços e cadastros gerais. A navegação e os textos diferenciarão essas finalidades, mas todas as páginas continuarão públicas no ambiente local porque a versão atual não possui usuário, senha, perfil ou autorização no backend.
+
+Alternativa considerada: ocultar páginas conforme um perfil guardado apenas no navegador produziria uma falsa sensação de segurança e permitiria acesso direto às mesmas APIs. Solicitações, propostas, avaliações, imagens e painéis individuais serão apresentados somente como evoluções futuras, nunca como funcionalidades ativas.
+
 ### Desenvolvimento em fatias verticais
 
 A primeira fatia será cadastrar cliente de ponta a ponta. Depois serão completados os cadastros e, em seguida, os casos de planejamento. Cada fatia deverá passar por explicação, autorização, implementação e verificação.

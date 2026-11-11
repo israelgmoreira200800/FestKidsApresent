@@ -45,3 +45,25 @@ A API SHALL responder erros em formato JSON previsível e com códigos HTTP comp
 - **WHEN** o frontend solicita um recurso que não existe
 - **THEN** a API devolve código de não encontrado e uma mensagem JSON sem traceback
 
+### Requirement: Experiências organizadas por finalidade
+O frontend SHALL diferenciar visualmente o planejamento do cliente, a gestão acadêmica de fornecedores e serviços e os cadastros gerais, reaproveitando as integrações existentes.
+
+#### Scenario: Entrada na plataforma
+- **WHEN** o visitante abre a página inicial
+- **THEN** a interface explica as áreas disponíveis e oferece acesso direto somente às funcionalidades implementadas
+
+#### Scenario: Área de planejamento
+- **WHEN** o visitante escolhe planejar uma festa
+- **THEN** a interface conduz ao cadastro da festa e às cinco etapas de planejamento já suportadas pela API
+
+#### Scenario: Gestão de fornecedores
+- **WHEN** o visitante acessa a gestão acadêmica de fornecedores
+- **THEN** a interface permite administrar fornecedores e serviços sem alegar conta profissional autenticada
+
+### Requirement: Limitações apresentadas com fidelidade
+O frontend MUST NOT apresentar autenticação, propostas, pagamentos, avaliações, imagens ou dados privados por perfil como se estivessem implementados.
+
+#### Scenario: Recurso sem suporte no backend
+- **WHEN** uma área desejada depende de entidade ou endpoint inexistente
+- **THEN** a interface omite a ação ou a identifica claramente como evolução futura, sem criar dados fictícios
+
