@@ -4,7 +4,7 @@ Plataforma acadêmica para planejamento de festas infantis, reconstruída do zer
 
 ## Estado atual
 
-O projeto já possui a base executável da API Flask, tratamento de erros, proteções das requisições, os quatro cadastros com ORM e suas telas de gestão.
+O projeto possui API Flask, tratamento padronizado de erros, quatro cadastros completos com ORM, procedures MySQL para consultas especializadas e uma jornada visual de planejamento em cinco etapas.
 
 As decisões e tarefas da reconstrução estão registradas em:
 
@@ -17,13 +17,13 @@ As entidades e seus relacionamentos estão explicados em `docs/modelo-dominio.md
 A matriz das vinte operações e a separação das camadas estão explicadas em `docs/matriz-crud.md`.
 O DDL inicial do MySQL está em `backend/database/create_database.sql`.
 
-O script cria o banco `festkids` e as tabelas `clientes`, `fornecedores`, `servicos`, `festas` e `planejamento_itens`. Ele foi executado e verificado em MySQL Community Server 8.4.9. A configuração segura do usuário da aplicação será adicionada em uma etapa própria.
+O script cria o banco `festkids` e as tabelas `clientes`, `fornecedores`, `servicos`, `festas` e `planejamento_itens`. Ele foi executado e verificado em MySQL Community Server 8.4.9.
 
 Os dados fictícios usados na demonstração estão em `backend/database/seed_demo.sql`. O arquivo pode ser executado novamente sem duplicar os registros identificados.
 
 Os testes automatizados usam o banco separado `festkids_test`, criado por `backend/database/create_test_database.sql`. A proteção em `backend/tests/database_guard.py` recusa a execução quando outro nome de banco é informado.
 
-## Arquitetura planejada
+## Arquitetura
 
 ```text
 Frontend HTML, CSS e JavaScript
@@ -31,7 +31,7 @@ Frontend HTML, CSS e JavaScript
 Routes → Controllers → Services → Models/Repositories → MySQL
 ```
 
-## Mapa inicial das pastas
+## Mapa das pastas
 
 ```text
 backend/
@@ -52,7 +52,7 @@ openspec/        proposta, especificações e tarefas rastreáveis
 
 ## Escopo acadêmico
 
-O sistema terá CRUD de clientes, fornecedores, serviços e festas, além de quatro funcionalidades de negócio:
+O sistema possui CRUD de clientes, fornecedores, serviços e festas, além de quatro funcionalidades de negócio:
 
 1. Sugerir pacote de serviços.
 2. Analisar orçamento.
@@ -61,9 +61,17 @@ O sistema terá CRUD de clientes, fornecedores, serviços e festas, além de qua
 
 Autenticação, pagamentos, propostas comerciais, avaliações, chat e inteligência artificial de recomendação não fazem parte desta versão.
 
+## Pré-requisitos
+
+- Python 3.11 ou superior;
+- MySQL Community Server 8.4;
+- Git;
+- navegador moderno;
+- PowerShell, nos comandos deste guia.
+
 ## Segurança
 
-Nunca coloque senhas, chaves ou conexões reais no Git. Copie `backend/.env.example` para um arquivo local ignorado somente quando a configuração do backend for implementada.
+Nunca coloque senhas, chaves ou conexões reais no Git. O arquivo `backend/.env.local` é local e ignorado; apenas `backend/.env.example`, sem credenciais, pode ser versionado.
 
 ## Dependências do backend
 
@@ -76,15 +84,50 @@ python -m venv .venv
 
 O ambiente `.venv` é local e está ignorado pelo Git.
 
+## Criar e carregar o banco MySQL
+
+No PowerShell, entre na pasta raiz do projeto. Se o comando `mysql` estiver disponível no `PATH`, execute:
+
+```powershell
+Get-Content backend\database\create_database.sql -Raw | mysql -u root -p
+Get-Content backend\database\seed_demo.sql -Raw | mysql -u root -p festkids
+```
+
+O MySQL solicitará a senha do usuário `root`. Se o comando não for reconhecido, use o caminho completo da instalação:
+
+```powershell
+$mysql = "C:\Program Files\MySQL\MySQL Server 8.4\bin\mysql.exe"
+Get-Content backend\database\create_database.sql -Raw | & $mysql -u root -p
+Get-Content backend\database\seed_demo.sql -Raw | & $mysql -u root -p festkids
+```
+
+`source` é um comando do console interativo do MySQL e não funciona diretamente no PowerShell. Por isso, este guia usa `Get-Content` e o operador de pipeline.
+
 ## Executar o backend
 
-Copie `backend/.env.example` para `backend/.env.local` e preencha `DATABASE_URL` com a conexão local do MySQL. Depois, execute:
+Copie `backend/.env.example` para `backend/.env.local`:
+
+```powershell
+Copy-Item backend\.env.example backend\.env.local
+```
+
+Preencha `DATABASE_URL` no arquivo local. Exemplo com senha:
+
+```dotenv
+DATABASE_URL=mysql+pymysql://root:SUA_SENHA@127.0.0.1:3306/festkids
+```
+
+Se o usuário local realmente não possuir senha, a parte após `root:` fica vazia. Nunca copie uma senha real para o README ou para um arquivo versionado.
+
+Depois, execute a partir da raiz:
 
 ```powershell
 .\.venv\Scripts\python.exe -m backend.run
 ```
 
 A rota `GET http://127.0.0.1:5000/api/saude` confirma que a API está funcionando.
+
+Mantenha esse terminal aberto durante o uso do frontend.
 
 ## Formato dos erros da API
 
@@ -129,12 +172,13 @@ Com a API em execução, abra outro terminal e inicie o servidor estático:
 .\.venv\Scripts\python.exe -m http.server 5500 --directory frontend
 ```
 
-Depois, acesse `http://127.0.0.1:5500`. A navegação leva às quatro telas:
+Depois, acesse `http://127.0.0.1:5500`. Backend e frontend rodam simultaneamente em terminais diferentes. A navegação leva às cinco telas:
 
 - `frontend/index.html`: clientes;
 - `frontend/fornecedores.html`: fornecedores;
 - `frontend/servicos.html`: serviços;
 - `frontend/festas.html`: festas.
+- `frontend/planejamento.html`: sugestão, orçamento, agenda e confirmação.
 
 Cada página carrega `frontend/js/api.js`, que concentra a requisição HTTP e a criação segura dos cartões, e seu próprio arquivo JavaScript dentro de `frontend/js/`. O arquivo `frontend/css/styles.css` contém o visual compartilhado e as adaptações para telas menores.
 
@@ -240,4 +284,60 @@ A resposta identifica o resultado como `RESERVA_ACADEMICA` e informa que a confi
 `frontend/planejamento.html` apresenta as cinco etapas da jornada: Festa, Sugestão, Orçamento, Agenda e Confirmação. O link “Planejamento” também está disponível no menu das quatro telas de cadastro.
 
 Cada etapa usa um link acessível por teclado, possui um painel identificado e atualiza `aria-current="step"` para indicar a posição atual. `frontend/js/planejamento.js` alterna os painéis e mantém a etapa no endereço por meio do fragmento `#`. Em tela estreita, a faixa das etapas possui rolagem própria para preservar a largura da página.
+
+## Resumo dos endpoints
+
+| Método | Endpoint | Finalidade |
+|---|---|---|
+| `GET` | `/api/saude` | Verificar a API |
+| `POST` | `/api/planejamentos/sugestao` | Sugerir pacote |
+| `GET` | `/api/planejamentos/{festa_id}/orcamento` | Analisar orçamento |
+| `GET` | `/api/planejamentos/{festa_id}/agenda` | Verificar conflitos |
+| `POST` | `/api/planejamentos/{festa_id}/confirmacao` | Confirmar reserva acadêmica |
+
+As tabelas anteriores deste README listam também as vinte operações cadastrais.
+
+## Executar os testes
+
+Crie primeiro o schema exclusivo de testes:
+
+```powershell
+$mysql = "C:\Program Files\MySQL\MySQL Server 8.4\bin\mysql.exe"
+Get-Content backend\database\create_test_database.sql -Raw | & $mysql -u root -p
+```
+
+Os testes esperam o MySQL local na porta `3308`, conforme o ambiente portátil usado no desenvolvimento. Se sua instalação estiver na porta padrão `3306`, ajuste as URLs de teste antes da execução ou inicie uma instância de testes na porta prevista. Nunca aponte a suíte para o banco `festkids`: `backend/tests/database_guard.py` aceita somente `festkids_test`.
+
+Execute a suíte a partir da raiz:
+
+```powershell
+.\.venv\Scripts\python.exe -m pytest backend\tests -q
+```
+
+Resultado verificado nesta versão: `101 passed`.
+
+Valide também a mudança OpenSpec:
+
+```powershell
+openspec validate reconstruir-festkids-do-zero --type change --strict --no-interactive
+```
+
+## Solução de problemas
+
+- `Can't connect to MySQL server`: confirme no aplicativo Serviços do Windows se o serviço MySQL está iniciado e confira host e porta.
+- `Access denied for user`: a senha ou o usuário de `DATABASE_URL` não corresponde ao MySQL local.
+- `source não é reconhecido`: use os comandos PowerShell com `Get-Content` mostrados acima.
+- Frontend mostra erro interno: confira primeiro o terminal do backend e se o schema `festkids` foi criado.
+- A porta `5000` já está ocupada: encerre a cópia antiga do backend antes de iniciar outra; várias instâncias podem responder versões diferentes da API.
+- A página `http://127.0.0.1:5000/` devolve não encontrado: isso é esperado; a API começa em `/api`, enquanto o frontend usa a porta `5500`.
+
+## Limitações acadêmicas
+
+- Não há autenticação nem perfis de usuário.
+- Não existe pagamento, contrato, contratação comercial ou envio de proposta.
+- A confirmação representa somente uma reserva acadêmica no banco local.
+- A agenda considera bloqueio pelo dia inteiro, sem horários parciais.
+- A recomendação é determinística por categoria, menor preço e menor ID; não usa inteligência artificial.
+- Não há upload de arquivos, notificações, chat ou integração com serviços externos.
+- A aplicação foi preparada para execução local e não inclui publicação em produção.
 

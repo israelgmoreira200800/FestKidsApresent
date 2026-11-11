@@ -60,7 +60,7 @@
 
 ## 9. Documentação e preparação da banca
 
-- [ ] 9.1 Finalizar README com instalação, configuração, execução separada, endpoints, casos de uso, limitações e testes, verificando os comandos em ambiente limpo
+- [x] 9.1 Finalizar README com instalação, configuração, execução separada, endpoints, casos de uso, limitações e testes, verificando os comandos em ambiente limpo
 - [ ] 9.2 Criar documentação da arquitetura, diagrama de classes e fluxogramas de entrada e recuperação, verificando correspondência com o código real
 - [ ] 9.3 Preparar dados e roteiro de demonstração das quatro funcionalidades não CRUD em até dois minutos, verificando o percurso completo em ensaio cronometrado
 - [ ] 9.4 Preparar apresentação de até sete minutos e banco de perguntas técnicas, verificando tempos e respostas sobre cada camada e decisão
