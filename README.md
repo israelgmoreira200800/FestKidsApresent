@@ -127,9 +127,9 @@ Depois, execute a partir da raiz:
 .\.venv\Scripts\python.exe -m backend.run
 ```
 
-A rota `GET http://127.0.0.1:5000/api/saude` confirma que a API está funcionando.
+Acesse `http://127.0.0.1:5000`. O mesmo processo Flask entrega a página inicial, os arquivos do frontend e a API. A rota `GET http://127.0.0.1:5000/api/saude` confirma que a API está funcionando.
 
-Mantenha esse terminal aberto durante o uso do frontend.
+Mantenha esse terminal aberto durante o uso do sistema.
 
 ## Formato dos erros da API
 
@@ -166,15 +166,9 @@ O endpoint `POST /api/clientes` recebe JSON com `nome`, `email` e `telefone`. A 
 }
 ```
 
-## Executar o frontend
+## Frontend integrado
 
-Com a API em execução, abra outro terminal e inicie o servidor estático:
-
-```powershell
-.\.venv\Scripts\python.exe -m http.server 5500 --directory frontend
-```
-
-Depois, acesse `http://127.0.0.1:5500`. Backend e frontend rodam simultaneamente em terminais diferentes. A navegação leva às cinco telas:
+Não é necessário iniciar um segundo servidor. Abra `http://127.0.0.1:5000` depois de executar `backend.run`. A navegação leva às telas:
 
 - `frontend/index.html`: entrada das áreas do sistema;
 - `frontend/clientes.html`: clientes;
@@ -183,7 +177,7 @@ Depois, acesse `http://127.0.0.1:5500`. Backend e frontend rodam simultaneamente
 - `frontend/festas.html`: festas.
 - `frontend/planejamento.html`: sugestão, orçamento, agenda e confirmação.
 
-Cada página carrega `frontend/js/api.js`, que concentra a requisição HTTP e a criação segura dos cartões, e seu próprio arquivo JavaScript dentro de `frontend/js/`. O arquivo `frontend/css/styles.css` contém o visual compartilhado e as adaptações para telas menores.
+Cada página funcional carrega `frontend/js/api.js`, que usa caminhos relativos para acessar `/api` na mesma origem e concentra a criação segura dos cartões. Cada cadastro mantém seu próprio arquivo JavaScript dentro de `frontend/js/`. O arquivo `frontend/css/styles.css` contém o visual compartilhado e as adaptações para telas menores.
 
 Nas quatro telas, o usuário pode listar, cadastrar, editar e excluir registros. A interface informa quando está carregando, quando a lista está vazia, quando uma operação termina com sucesso e quando a API devolve um erro ou não está disponível.
 
@@ -332,7 +326,7 @@ openspec validate reconstruir-festkids-do-zero --type change --strict --no-inter
 - `source não é reconhecido`: use os comandos PowerShell com `Get-Content` mostrados acima.
 - Frontend mostra erro interno: confira primeiro o terminal do backend e se o schema `festkids` foi criado.
 - A porta `5000` já está ocupada: encerre a cópia antiga do backend antes de iniciar outra; várias instâncias podem responder versões diferentes da API.
-- A página `http://127.0.0.1:5000/` devolve não encontrado: isso é esperado; a API começa em `/api`, enquanto o frontend usa a porta `5500`.
+- `Failed to fetch`: confirme que abriu a página pelo endereço `http://127.0.0.1:5000`, e não por um servidor estático antigo na porta `5500`; reinicie o Flask depois de atualizar o código.
 
 ## Limitações acadêmicas
 

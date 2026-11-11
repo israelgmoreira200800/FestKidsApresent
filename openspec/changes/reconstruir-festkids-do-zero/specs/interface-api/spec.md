@@ -89,3 +89,10 @@ O frontend SHALL conectar a entrada, as demonstrações de cliente e fornecedor,
 - **WHEN** o visitante abre os termos de uso
 - **THEN** a página informa finalidade acadêmica, caráter ilustrativo, ausência de contratação e cuidados com dados fictícios
 
+### Requirement: Execução unificada local
+O Flask SHALL entregar o frontend e a API na mesma origem local, e o JavaScript SHALL usar caminhos relativos para acessar `/api`.
+
+#### Scenario: Inicialização do sistema completo
+- **WHEN** o usuário inicia o processo Flask e abre a rota raiz
+- **THEN** a página inicial é carregada e suas requisições alcançam a API sem um segundo servidor de frontend
+

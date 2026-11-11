@@ -61,21 +61,15 @@ Get-Content backend\database\reset_demo.sql -Raw | & $mysql -u root -p festkids
 
 O reset altera somente os registros fictícios identificados pelos nomes e e-mails do projeto. A Festa da Lia volta para `RASCUNHO`, seu pacote é limpo e a Festa do Theo volta a reservar apenas Recreação.
 
-### 3.2 Abrir os dois servidores
+### 3.2 Abrir o sistema completo
 
-Terminal 1 — backend:
+Na raiz do projeto, execute:
 
 ```powershell
 .\.venv\Scripts\python.exe -m backend.run
 ```
 
-Terminal 2 — frontend:
-
-```powershell
-.\.venv\Scripts\python.exe -m http.server 5500 --directory frontend
-```
-
-Abra `http://127.0.0.1:5500/planejamento.html`. Deixe a página na etapa Festa e feche abas desnecessárias.
+Abra `http://127.0.0.1:5000/planejamento.html`. O Flask entrega frontend e API no mesmo endereço. Deixe a página na etapa Festa e feche abas desnecessárias.
 
 ### 3.3 Checklist de trinta segundos
 

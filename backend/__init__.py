@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from flask import Flask
 
 from backend.config import Configuracao
@@ -7,7 +9,12 @@ from backend.routes import registrar_rotas
 
 
 def create_app(configuracao_adicional=None):
-    app = Flask(__name__)
+    pasta_frontend = Path(__file__).resolve().parent.parent / "frontend"
+    app = Flask(
+        __name__,
+        static_folder=str(pasta_frontend),
+        static_url_path="",
+    )
     app.config.from_object(Configuracao)
 
     if configuracao_adicional:

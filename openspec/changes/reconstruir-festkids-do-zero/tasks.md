@@ -56,6 +56,7 @@
 - [x] 7.9 Validar a reformulação completa no navegador, verificando responsividade, teclado, console e ausência de funcionalidades fictícias
 - [x] 7.10 Criar protótipos visuais separados para cliente e fornecedor, verificando identificação de demonstração, ausência de JavaScript e responsividade
 - [x] 7.11 Integrar as demonstrações à navegação do frontend e criar termos de uso acadêmicos, verificando acesso entre todas as telas e ausência de aceite fictício
+- [x] 7.12 Servir frontend e API pelo mesmo processo Flask com caminhos relativos, verificando página raiz, arquivos estáticos e consulta real da API
 
 ## 8. Testes e qualidade
 
