@@ -67,3 +67,14 @@ O frontend MUST NOT apresentar autenticação, propostas, pagamentos, avaliaçõ
 - **WHEN** uma área desejada depende de entidade ou endpoint inexistente
 - **THEN** a interface omite a ação ou a identifica claramente como evolução futura, sem criar dados fictícios
 
+### Requirement: Protótipos visuais por perfil
+O frontend SHALL apresentar telas estáticas separadas para ilustrar uma futura experiência de cliente e fornecedor sem confundi-las com funcionalidades implementadas.
+
+#### Scenario: Demonstração do cliente
+- **WHEN** o visitante abre o protótipo do cliente
+- **THEN** a página identifica o conteúdo como ilustrativo, não realiza requisições e mantém ações indisponíveis desabilitadas
+
+#### Scenario: Demonstração do fornecedor
+- **WHEN** o visitante abre o protótipo do fornecedor
+- **THEN** a página identifica o conteúdo como ilustrativo, não realiza requisições e mantém ações indisponíveis desabilitadas
+

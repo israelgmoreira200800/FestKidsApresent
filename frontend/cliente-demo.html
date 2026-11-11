@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FestKids | Demonstração do cliente</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="corpo-demo cliente-demo">
+    <header class="barra-demo">
+        <a class="marca" href="index.html"><span class="marca-icone">F</span><span>FestKids</span></a>
+        <span class="selo-demo">Demonstração visual · sem funções</span>
+        <a class="voltar-demo" href="index.html">Voltar ao início</a>
+    </header>
+    <div class="estrutura-demo">
+        <aside class="menu-demo" aria-label="Menu ilustrativo do cliente">
+            <div><p class="etiqueta">Área do cliente</p><h1>Olá, responsável!</h1><p>Organize sua festa com tranquilidade.</p></div>
+            <nav>
+                <a class="selecionado" href="#visao-geral">Visão geral</a>
+                <a href="#festa">Minha festa</a>
+                <a href="#fornecedores">Encontrar fornecedores</a>
+                <a href="#orcamento">Orçamento</a>
+                <a href="#planejamento">Planejamento</a>
+            </nav>
+            <p class="nota-demo">Os links apenas organizam esta página. Nenhum dado é salvo.</p>
+        </aside>
+        <main class="conteudo-demo" id="visao-geral">
+            <section class="cabecalho-demo">
+                <div><p class="etiqueta">Visão geral</p><h2>Sua festa, passo a passo</h2><p>Conteúdo ilustrativo de como seria a futura experiência do cliente.</p></div>
+                <button type="button" disabled>+ Criar nova festa</button>
+            </section>
+            <section class="aviso-demo"><strong>Protótipo estático</strong><span>Os valores e estados abaixo são apenas exemplos visuais. Esta tela não consulta o backend.</span></section>
+            <section class="indicadores-demo" aria-label="Indicadores ilustrativos">
+                <article><span>Orçamento ilustrativo</span><strong>R$ 5.000</strong><small>Exemplo visual</small></article>
+                <article><span>Serviços escolhidos</span><strong>3 de 5</strong><small>Exemplo visual</small></article>
+                <article><span>Próximo evento</span><strong>05 dez.</strong><small>Data fictícia</small></article>
+            </section>
+            <div class="grade-dashboard-demo">
+                <section class="cartao-dashboard-demo" id="festa">
+                    <div class="cabecalho-cartao-demo"><div><p class="etiqueta">Minha festa</p><h3>Festa de aniversário</h3></div><span class="status-demo">Planejando</span></div>
+                    <div class="progresso-demo"><span style="width: 60%"></span></div>
+                    <p>Três das cinco etapas ilustrativas concluídas.</p>
+                    <ul class="lista-demo"><li class="concluido">Dados da festa</li><li class="concluido">Categorias escolhidas</li><li class="concluido">Pacote sugerido</li><li>Análise da agenda</li><li>Confirmação</li></ul>
+                    <button type="button" disabled>Continuar planejamento</button>
+                </section>
+                <section class="cartao-dashboard-demo" id="orcamento">
+                    <div class="cabecalho-cartao-demo"><div><p class="etiqueta">Orçamento</p><h3>Resumo ilustrativo</h3></div><span class="percentual-demo">41%</span></div>
+                    <dl class="resumo-valores-demo"><div><dt>Disponível</dt><dd>R$ 5.000</dd></div><div><dt>Pacote estimado</dt><dd>R$ 2.050</dd></div><div><dt>Saldo ilustrativo</dt><dd>R$ 2.950</dd></div></dl>
+                    <button type="button" disabled>Ver detalhes do orçamento</button>
+                </section>
+                <section class="cartao-dashboard-demo largo" id="fornecedores">
+                    <div class="cabecalho-cartao-demo"><div><p class="etiqueta">Descoberta</p><h3>Encontre o serviço ideal</h3></div></div>
+                    <div class="categorias-demo"><span>Buffet</span><span>Decoração</span><span>Fotografia</span><span>Recreação</span><span>Bolos e doces</span><span>Espaços</span></div>
+                    <button type="button" disabled>Explorar fornecedores</button>
+                </section>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
