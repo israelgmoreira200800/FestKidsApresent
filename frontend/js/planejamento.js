@@ -9,6 +9,11 @@ const formularioSugestao = document.getElementById("formulario-sugestao");
 const botaoSugerir = document.getElementById("botao-sugerir");
 const mensagemSugestao = document.getElementById("mensagem-sugestao");
 const resultadoSugestao = document.getElementById("resultado-sugestao");
+const botaoIrOrcamento = document.getElementById("botao-ir-orcamento");
+const resumoOrcamentoFesta = document.getElementById("resumo-orcamento-festa");
+const botaoAnalisarOrcamento = document.getElementById("botao-analisar-orcamento");
+const mensagemOrcamento = document.getElementById("mensagem-orcamento");
+const resultadoOrcamento = document.getElementById("resultado-orcamento");
 
 let festasDisponiveis = [];
 let festaSelecionada = null;
@@ -81,6 +86,37 @@ function renderizarCategoriasSemCandidato(categorias) {
     resultadoSugestao.appendChild(lista);
 }
 
+function criarIndicadorOrcamento(rotulo, valor) {
+    const indicador = document.createElement("div");
+    indicador.className = "indicador-orcamento";
+    indicador.append(criarTexto("span", rotulo), criarTexto("strong", valor));
+    return indicador;
+}
+
+function renderizarAnaliseOrcamento(analise) {
+    const situacao = document.createElement("section");
+    situacao.className = `situacao-orcamento ${analise.viavel ? "viavel" : "excedido"}`;
+    situacao.append(
+        criarTexto("h3", analise.viavel ? "Pacote dentro do orçamento" : "Pacote acima do orçamento"),
+        criarTexto(
+            "p",
+            analise.viavel
+                ? `Ainda restam ${formatarMoeda(analise.saldo)} no orçamento.`
+                : `O pacote excede o orçamento em ${formatarMoeda(analise.excedente)}.`
+        )
+    );
+
+    const indicadores = document.createElement("div");
+    indicadores.className = "grade-orcamento";
+    indicadores.append(
+        criarIndicadorOrcamento("Orçamento", formatarMoeda(analise.orcamento)),
+        criarIndicadorOrcamento("Total do pacote", formatarMoeda(analise.total)),
+        criarIndicadorOrcamento("Percentual utilizado", `${Number(analise.percentual_utilizado).toLocaleString("pt-BR")} %`),
+        criarIndicadorOrcamento("Custo por convidado", formatarMoeda(analise.custo_por_convidado))
+    );
+    resultadoOrcamento.replaceChildren(situacao, indicadores);
+}
+
 async function carregarFestas() {
     estadoFestas.textContent = "Carregando festas...";
     try {
@@ -113,6 +149,7 @@ botaoEscolherFesta.addEventListener("click", () => {
     festaSelecionada = festasDisponiveis.find((festa) => festa.id === Number(seletorFesta.value));
     if (!festaSelecionada) return;
     resumoFesta.textContent = `${festaSelecionada.nome} • ${festaSelecionada.data} • ${festaSelecionada.quantidade_convidados} convidados`;
+    resumoOrcamentoFesta.textContent = resumoFesta.textContent;
     botaoSugerir.disabled = false;
     window.location.hash = "sugestao";
     mostrarEtapa("sugestao", true);
@@ -143,15 +180,45 @@ formularioSugestao.addEventListener("submit", async (evento) => {
         if (resultado.completo) {
             exibirMensagemPlanejamento(mensagemSugestao, "Pacote sugerido com sucesso.", "sucesso");
             renderizarPacote(resultado.itens);
+            botaoIrOrcamento.disabled = false;
+            botaoAnalisarOrcamento.disabled = false;
         } else {
             exibirMensagemPlanejamento(mensagemSugestao, "Existem categorias sem candidato.", "erro");
             renderizarCategoriasSemCandidato(resultado.categorias_sem_candidato);
+            botaoIrOrcamento.disabled = true;
         }
     } catch (erro) {
         exibirMensagemPlanejamento(mensagemSugestao, `Erro: ${erro.message}`, "erro");
     } finally {
         botaoSugerir.disabled = false;
         botaoSugerir.textContent = "Gerar sugestão";
+    }
+});
+
+botaoIrOrcamento.addEventListener("click", () => {
+    window.location.hash = "orcamento";
+    mostrarEtapa("orcamento", true);
+});
+
+botaoAnalisarOrcamento.addEventListener("click", async () => {
+    if (!festaSelecionada) return;
+    botaoAnalisarOrcamento.disabled = true;
+    botaoAnalisarOrcamento.textContent = "Analisando...";
+    exibirMensagemPlanejamento(mensagemOrcamento, "Calculando os valores do pacote...");
+    resultadoOrcamento.replaceChildren();
+    try {
+        const analise = await requisicaoApi(`/api/planejamentos/${festaSelecionada.id}/orcamento`);
+        renderizarAnaliseOrcamento(analise);
+        exibirMensagemPlanejamento(
+            mensagemOrcamento,
+            analise.viavel ? "O pacote cabe no orçamento." : "O pacote ultrapassa o orçamento.",
+            analise.viavel ? "sucesso" : "erro"
+        );
+    } catch (erro) {
+        exibirMensagemPlanejamento(mensagemOrcamento, `Erro: ${erro.message}`, "erro");
+    } finally {
+        botaoAnalisarOrcamento.disabled = false;
+        botaoAnalisarOrcamento.textContent = "Analisar orçamento";
     }
 });
 

@@ -100,13 +100,20 @@
                         <button id="botao-sugerir" type="submit" disabled>Gerar sugestão</button>
                     </form>
                     <div id="resultado-sugestao" class="resultado-sugestao" aria-live="polite"></div>
+                    <button id="botao-ir-orcamento" type="button" disabled>Continuar para o orçamento</button>
                 </div>
             </section>
 
             <section id="painel-orcamento" class="painel-etapa" data-painel="orcamento" aria-labelledby="titulo-etapa-orcamento" tabindex="-1" hidden>
                 <p class="etiqueta">Etapa 3</p>
                 <h2 id="titulo-etapa-orcamento">Analisar o orçamento</h2>
-                <p>O total, o saldo, o percentual utilizado e o custo por convidado serão apresentados nesta etapa.</p>
+                <p>Confira quanto o pacote utiliza do orçamento definido para a festa.</p>
+                <div class="bloco-interacao">
+                    <p id="resumo-orcamento-festa" class="resumo-festa">Nenhuma festa selecionada.</p>
+                    <button id="botao-analisar-orcamento" type="button" disabled>Analisar orçamento</button>
+                    <div id="mensagem-orcamento" class="mensagem-planejamento" role="status" aria-live="polite"></div>
+                    <div id="resultado-orcamento" class="resultado-orcamento" aria-live="polite"></div>
+                </div>
             </section>
 
             <section id="painel-agenda" class="painel-etapa" data-painel="agenda" aria-labelledby="titulo-etapa-agenda" tabindex="-1" hidden>
