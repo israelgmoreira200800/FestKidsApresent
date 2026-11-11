@@ -72,14 +72,35 @@
             <section id="painel-festa" class="painel-etapa" data-painel="festa" aria-labelledby="titulo-etapa-festa" tabindex="-1">
                 <p class="etiqueta">Etapa 1</p>
                 <h2 id="titulo-etapa-festa">Escolher a festa</h2>
-                <p>O ponto de partida será selecionar uma festa em rascunho para iniciar o planejamento.</p>
-                <a class="link-acao" href="festas.html">Gerenciar festas</a>
+                <p>Selecione uma festa em rascunho para iniciar o planejamento.</p>
+                <div class="bloco-interacao">
+                    <div class="campo"><label for="festa-planejamento">Festa</label><select id="festa-planejamento" disabled><option value="">Carregando festas...</option></select></div>
+                    <div id="estado-festas" class="mensagem-planejamento" role="status" aria-live="polite">Carregando festas...</div>
+                    <div class="acoes-planejamento"><button id="botao-escolher-festa" type="button" disabled>Continuar com esta festa</button><a class="link-secundario" href="festas.html">Gerenciar festas</a></div>
+                </div>
             </section>
 
             <section id="painel-sugestao" class="painel-etapa" data-painel="sugestao" aria-labelledby="titulo-etapa-sugestao" tabindex="-1" hidden>
                 <p class="etiqueta">Etapa 2</p>
                 <h2 id="titulo-etapa-sugestao">Sugerir o pacote</h2>
-                <p>As categorias desejadas serão enviadas para a API escolher serviços disponíveis de forma determinística.</p>
+                <p>Escolha as categorias que devem fazer parte do pacote.</p>
+                <div class="bloco-interacao">
+                    <p id="resumo-festa" class="resumo-festa">Nenhuma festa selecionada.</p>
+                    <form id="formulario-sugestao">
+                        <fieldset class="grupo-categorias">
+                            <legend>Categorias desejadas</legend>
+                            <label><input type="checkbox" name="categoria" value="BUFFET"> Buffet</label>
+                            <label><input type="checkbox" name="categoria" value="DECORACAO"> Decoração</label>
+                            <label><input type="checkbox" name="categoria" value="FOTOGRAFIA"> Fotografia</label>
+                            <label><input type="checkbox" name="categoria" value="RECREACAO"> Recreação</label>
+                            <label><input type="checkbox" name="categoria" value="BOLO_E_DOCES"> Bolo e doces</label>
+                            <label><input type="checkbox" name="categoria" value="ESPACO"> Espaço</label>
+                        </fieldset>
+                        <div id="mensagem-sugestao" class="mensagem-planejamento" role="status" aria-live="polite"></div>
+                        <button id="botao-sugerir" type="submit" disabled>Gerar sugestão</button>
+                    </form>
+                    <div id="resultado-sugestao" class="resultado-sugestao" aria-live="polite"></div>
+                </div>
             </section>
 
             <section id="painel-orcamento" class="painel-etapa" data-painel="orcamento" aria-labelledby="titulo-etapa-orcamento" tabindex="-1" hidden>
@@ -102,6 +123,7 @@
         </div>
     </main>
 
+    <script src="js/api.js"></script>
     <script src="js/planejamento.js"></script>
 </body>
 </html>
