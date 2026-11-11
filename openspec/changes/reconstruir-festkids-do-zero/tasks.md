@@ -53,7 +53,7 @@
 
 ## 8. Testes e qualidade
 
-- [ ] 8.1 Cobrir Services e validações com testes unitários, verificando todos os ramos de regra de negócio especificados
+- [x] 8.1 Cobrir Services e validações com testes unitários, verificando todos os ramos de regra de negócio especificados
 - [ ] 8.2 Cobrir API e persistência com testes de integração MySQL, verificando CRUD, integridade, dinheiro, agenda e transações
 - [ ] 8.3 Cobrir funções e contratos críticos do frontend com testes JavaScript, verificando renderização segura e transporte HTTP
 - [ ] 8.4 Executar formatação, testes backend, testes frontend e inspeção de segredos, registrando resultados e qualquer verificação não executável
