@@ -3,7 +3,7 @@
     --cor-superficie: #ffffff;
     --cor-primaria: #6d3bd1;
     --cor-primaria-escura: #5226ad;
-    --cor-destaque: #ff8a5b;
+    --cor-destaque: #9f3d16;
     --cor-texto: #252238;
     --cor-texto-suave: #6c687c;
     --cor-borda: #e5deef;
@@ -182,9 +182,12 @@ body {
     resize: vertical;
 }
 
-.campo input:focus {
+.campo input:focus-visible,
+.campo select:focus-visible,
+.campo textarea:focus-visible {
     border-color: var(--cor-primaria);
     outline: 3px solid rgba(109, 59, 209, 0.16);
+    outline-offset: 2px;
 }
 
 .mensagem:not(:empty) {
@@ -487,9 +490,12 @@ button.botao-secundario {
     border-color: #c9b8f2;
 }
 
-.navegacao-etapas a:focus-visible,
-.link-acao:focus-visible,
-.navegacao a:focus-visible {
+a:focus-visible {
+    outline: 3px solid var(--cor-destaque);
+    outline-offset: 3px;
+}
+
+.grupo-categorias input:focus-visible {
     outline: 3px solid var(--cor-destaque);
     outline-offset: 3px;
 }
@@ -541,7 +547,7 @@ button.botao-secundario {
 }
 
 .painel-etapa:focus {
-    outline: 3px solid rgba(109, 59, 209, 0.25);
+    outline: 3px solid var(--cor-primaria);
     outline-offset: 4px;
 }
 
