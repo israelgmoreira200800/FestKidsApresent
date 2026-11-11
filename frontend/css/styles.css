@@ -63,6 +63,182 @@ body {
     font-size: 0.9rem;
 }
 
+.pagina-inicial {
+    width: min(1180px, calc(100% - 40px));
+    margin: 0 auto;
+    padding: 44px 0 80px;
+}
+
+.hero-inicial {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.65fr);
+    gap: 58px;
+    align-items: center;
+    min-height: 540px;
+}
+
+.hero-inicial h1 {
+    max-width: 760px;
+    margin: 12px 0 22px;
+    font-size: clamp(3rem, 7vw, 5.7rem);
+    line-height: 0.96;
+    letter-spacing: -0.06em;
+}
+
+.acoes-iniciais,
+.links-area {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.acoes-iniciais { margin-top: 30px; }
+
+.botao-link,
+.links-area a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0 18px;
+    color: white;
+    background: var(--cor-primaria);
+    border-radius: 12px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.botao-link.secundario {
+    color: var(--cor-primaria);
+    background: white;
+    border: 1px solid var(--cor-borda);
+}
+
+.resumo-produto {
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.86);
+    border: 1px solid var(--cor-borda);
+    border-radius: 28px;
+    box-shadow: var(--sombra);
+}
+
+.resumo-produto ol {
+    display: grid;
+    gap: 18px;
+    margin: 22px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.resumo-produto li {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    color: var(--cor-texto-suave);
+    line-height: 1.45;
+}
+
+.resumo-produto li strong,
+.icone-area {
+    display: grid;
+    flex: 0 0 42px;
+    width: 42px;
+    height: 42px;
+    place-items: center;
+    color: var(--cor-primaria);
+    background: #eee7ff;
+    border-radius: 13px;
+    font-size: 0.8rem;
+}
+
+.secao-areas { padding-top: 70px; }
+
+.cabecalho-secao {
+    display: flex;
+    gap: 24px;
+    align-items: end;
+    justify-content: space-between;
+    margin-bottom: 26px;
+}
+
+.cabecalho-secao h2 {
+    margin: 8px 0 0;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    letter-spacing: -0.04em;
+}
+
+.cabecalho-secao > p {
+    max-width: 380px;
+    margin: 0;
+    color: var(--cor-texto-suave);
+    line-height: 1.6;
+}
+
+.grade-areas {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.cartao-area {
+    display: flex;
+    flex-direction: column;
+    min-height: 330px;
+    padding: 28px;
+    background: white;
+    border: 1px solid var(--cor-borda);
+    border-radius: 24px;
+    box-shadow: 0 14px 38px rgba(67, 42, 112, 0.08);
+}
+
+.cartao-area.destaque {
+    background: linear-gradient(145deg, #ffffff, #f3edff);
+    border-color: #cbbcf0;
+}
+
+.cartao-area .etiqueta { margin-top: 24px; }
+
+.cartao-area h3 {
+    margin: 9px 0 12px;
+    font-size: 1.5rem;
+}
+
+.cartao-area > p:not(.etiqueta) {
+    margin: 0 0 26px;
+    color: var(--cor-texto-suave);
+    line-height: 1.6;
+}
+
+.links-area { margin-top: auto; }
+
+.links-area a {
+    min-height: 42px;
+    padding: 0 13px;
+    font-size: 0.85rem;
+}
+
+.links-area a + a {
+    color: var(--cor-primaria);
+    background: #eee7ff;
+}
+
+.aviso-escopo {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    margin-top: 22px;
+    padding: 20px 24px;
+    color: #704b00;
+    background: #fff8e8;
+    border: 1px solid #f0cf83;
+    border-radius: 18px;
+}
+
+.aviso-escopo p {
+    margin: 0;
+    line-height: 1.55;
+}
+
 .conteudo-principal {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(340px, 480px);
@@ -833,6 +1009,21 @@ a:focus-visible {
 }
 
 @media (max-width: 820px) {
+    .hero-inicial,
+    .grade-areas { grid-template-columns: 1fr; }
+
+    .hero-inicial {
+        gap: 34px;
+        min-height: auto;
+    }
+
+    .cabecalho-secao {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .cartao-area { min-height: 0; }
+
     .conteudo-principal {
         grid-template-columns: 1fr;
         gap: 40px;
@@ -878,8 +1069,23 @@ a:focus-visible {
 
 @media (max-width: 520px) {
     .cabecalho,
-    .conteudo-principal {
+    .conteudo-principal,
+    .pagina-inicial {
         width: min(100% - 28px, 1120px);
+    }
+
+    .pagina-inicial { padding-top: 22px; }
+
+    .hero-inicial h1 { font-size: clamp(2.6rem, 15vw, 4rem); }
+
+    .acoes-iniciais,
+    .acoes-iniciais .botao-link,
+    .links-area,
+    .links-area a { width: 100%; }
+
+    .aviso-escopo {
+        align-items: flex-start;
+        flex-direction: column;
     }
 
     .identificacao-pagina {

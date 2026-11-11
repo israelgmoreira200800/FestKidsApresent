@@ -176,7 +176,8 @@ Com a API em execução, abra outro terminal e inicie o servidor estático:
 
 Depois, acesse `http://127.0.0.1:5500`. Backend e frontend rodam simultaneamente em terminais diferentes. A navegação leva às cinco telas:
 
-- `frontend/index.html`: clientes;
+- `frontend/index.html`: entrada das áreas do sistema;
+- `frontend/clientes.html`: clientes;
 - `frontend/fornecedores.html`: fornecedores;
 - `frontend/servicos.html`: serviços;
 - `frontend/festas.html`: festas.

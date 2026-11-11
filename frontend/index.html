@@ -1,17 +1,69 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>FestKids | Clientes</title><link rel="stylesheet" href="css/styles.css"></head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FestKids | Início</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
 <body>
-    <header class="cabecalho"><a class="marca" href="index.html"><span class="marca-icone">F</span><span>FestKids</span></a><nav class="navegacao" aria-label="Navegação principal"><a class="ativo" href="index.html">Clientes</a><a href="fornecedores.html">Fornecedores</a><a href="servicos.html">Serviços</a><a href="festas.html">Festas</a><a href="planejamento.html">Planejamento</a></nav></header>
-    <main class="pagina-gestao">
-        <section class="titulo-gestao"><div><p class="etiqueta">Cadastros</p><h1>Clientes</h1><p>Responsáveis pelas festas cadastradas no sistema.</p></div><span class="selo">Route → Controller → Service → Model</span></section>
-        <div class="grade-gestao">
-            <section class="cartao-formulario"><div class="cabecalho-formulario"><p class="etiqueta">Formulário</p><h2 id="titulo-formulario">Novo cliente</h2></div>
-                <form id="formulario-cliente"><input id="cliente-id" type="hidden"><div class="campo"><label for="nome">Nome completo</label><input id="nome" maxlength="120" required></div><div class="campo"><label for="email">E-mail</label><input id="email" type="email" maxlength="255" required></div><div class="campo"><label for="telefone">Telefone</label><input id="telefone" type="tel" maxlength="20" required></div><div id="mensagem-formulario" class="mensagem" role="status" aria-live="polite"></div><div class="acoes-formulario"><button id="botao-salvar" type="submit">Salvar cliente</button><button id="botao-cancelar" class="botao-secundario" type="button" hidden>Cancelar edição</button></div></form>
-            </section>
-            <section class="cartao-lista"><div class="cabecalho-lista"><div><p class="etiqueta">Registros</p><h2>Clientes cadastrados</h2></div><button id="botao-atualizar" class="botao-pequeno" type="button">Atualizar</button></div><div id="estado-lista" class="estado-lista" role="status">Carregando clientes...</div><div id="lista-clientes" class="lista-registros"></div></section>
-        </div>
+    <header class="cabecalho">
+        <a class="marca" href="index.html"><span class="marca-icone">F</span><span>FestKids</span></a>
+        <nav class="navegacao" aria-label="Navegação principal">
+            <a class="ativo" href="index.html">Início</a>
+            <a href="planejamento.html">Planejamento</a>
+            <a href="fornecedores.html">Fornecedores</a>
+            <a href="clientes.html">Cadastros</a>
+        </nav>
+    </header>
+
+    <main class="pagina-inicial">
+        <section class="hero-inicial">
+            <div>
+                <p class="etiqueta">Planejamento de festas infantis</p>
+                <h1>Organize cada escolha em um só lugar.</h1>
+                <p class="texto-apresentacao">Cadastre a festa, monte um pacote de serviços, acompanhe o orçamento e confira a agenda antes da confirmação acadêmica.</p>
+                <div class="acoes-iniciais">
+                    <a class="botao-link" href="festas.html">Criar uma festa</a>
+                    <a class="botao-link secundario" href="planejamento.html">Iniciar planejamento</a>
+                </div>
+            </div>
+            <aside class="resumo-produto" aria-label="Fluxo principal do FestKids">
+                <p class="etiqueta">Como funciona</p>
+                <ol>
+                    <li><strong>1</strong><span><b>Cadastre</b> os dados da festa</span></li>
+                    <li><strong>2</strong><span><b>Escolha</b> as categorias desejadas</span></li>
+                    <li><strong>3</strong><span><b>Analise</b> orçamento e agenda</span></li>
+                    <li><strong>4</strong><span><b>Confirme</b> o planejamento acadêmico</span></li>
+                </ol>
+            </aside>
+        </section>
+
+        <section class="secao-areas" aria-labelledby="titulo-areas">
+            <div class="cabecalho-secao">
+                <div><p class="etiqueta">Áreas disponíveis</p><h2 id="titulo-areas">Escolha o que você precisa fazer</h2></div>
+                <p>As áreas abaixo utilizam somente funcionalidades já conectadas à API.</p>
+            </div>
+            <div class="grade-areas">
+                <article class="cartao-area destaque">
+                    <span class="icone-area" aria-hidden="true">01</span><p class="etiqueta">Responsável pela festa</p><h3>Planejar uma festa</h3>
+                    <p>Crie o evento e percorra sugestão, orçamento, agenda e confirmação.</p>
+                    <div class="links-area"><a href="festas.html">Cadastrar festa</a><a href="planejamento.html">Abrir planejamento</a></div>
+                </article>
+                <article class="cartao-area">
+                    <span class="icone-area" aria-hidden="true">02</span><p class="etiqueta">Gestão acadêmica</p><h3>Fornecedores e serviços</h3>
+                    <p>Gerencie os profissionais cadastrados, seus serviços, preços e disponibilidade.</p>
+                    <div class="links-area"><a href="fornecedores.html">Ver fornecedores</a><a href="servicos.html">Gerenciar serviços</a></div>
+                </article>
+                <article class="cartao-area">
+                    <span class="icone-area" aria-hidden="true">03</span><p class="etiqueta">Cadastros do sistema</p><h3>Clientes e registros</h3>
+                    <p>Consulte e mantenha os dados usados pelo fluxo acadêmico do FestKids.</p>
+                    <div class="links-area"><a href="clientes.html">Gerenciar clientes</a><a href="festas.html">Gerenciar festas</a></div>
+                </article>
+            </div>
+        </section>
+
+        <aside class="aviso-escopo"><strong>Versão acadêmica</strong><p>Esta versão não possui login, pagamento, propostas comerciais ou painel privado de fornecedor. A confirmação representa somente uma reserva acadêmica.</p></aside>
     </main>
-    <script src="js/api.js"></script><script src="js/clientes.js"></script>
 </body>
 </html>
