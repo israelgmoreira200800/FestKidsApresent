@@ -471,6 +471,74 @@ button:disabled {
     white-space: nowrap;
 }
 
+.painel-contexto {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
+.painel-contexto > div {
+    display: flex;
+    gap: 13px;
+    align-items: flex-start;
+    padding: 17px;
+    background: rgba(255, 255, 255, 0.82);
+    border: 1px solid var(--cor-borda);
+    border-radius: 16px;
+}
+
+.painel-contexto .recurso-futuro {
+    background: #fff8e8;
+    border-color: #f0cf83;
+}
+
+.numero-contexto {
+    display: grid;
+    flex: 0 0 34px;
+    width: 34px;
+    height: 34px;
+    place-items: center;
+    color: var(--cor-primaria);
+    background: #eee7ff;
+    border-radius: 10px;
+    font-size: 0.72rem;
+    font-weight: 700;
+}
+
+.painel-contexto p {
+    margin: 0;
+    color: var(--cor-texto-suave);
+    font-size: 0.85rem;
+    line-height: 1.45;
+}
+
+.painel-contexto strong {
+    display: block;
+    margin-bottom: 3px;
+    color: var(--cor-texto);
+}
+
+.atalho-contexto {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    padding: 14px 18px;
+    color: var(--cor-primaria-escura);
+    background: #eee7ff;
+    border-radius: 14px;
+}
+
+.atalho-contexto p { margin: 0; }
+
+.atalho-contexto a {
+    flex: 0 0 auto;
+    color: var(--cor-primaria-escura);
+    font-weight: 700;
+}
+
 .grade-gestao {
     display: grid;
     grid-template-columns: minmax(320px, 410px) minmax(0, 1fr);
@@ -1048,6 +1116,8 @@ a:focus-visible {
         grid-template-columns: 1fr;
     }
 
+    .painel-contexto { grid-template-columns: 1fr; }
+
     .titulo-gestao {
         align-items: flex-start;
         flex-direction: column;
@@ -1152,5 +1222,10 @@ a:focus-visible {
 
     .acoes-registro button {
         flex: 1;
+    }
+
+    .atalho-contexto {
+        align-items: flex-start;
+        flex-direction: column;
     }
 }
